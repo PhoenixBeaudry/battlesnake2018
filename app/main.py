@@ -34,7 +34,22 @@ def start():
 def move():
     data = bottle.request.json
 
-    # TODO: Do things with data
+    #Reading in game-state information.
+    self_snake = data['you']
+    enemy_snakes = data['snakes']
+    food_locations = data['food']
+    board_height = data['height']
+    board_width = data['width']
+
+
+'''
+
+
+    Snake Logic will end up going here.
+
+
+''' 
+
     directions = ['up', 'down', 'left', 'right']
 
     return {
