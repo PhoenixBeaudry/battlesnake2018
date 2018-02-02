@@ -42,13 +42,11 @@ def move():
     board_width = data['width']
 
 
-'''
 
 
-    Snake Logic will end up going here.
+    #Snake Logic will end up going here.
 
 
-''' 
 
     directions = ['up', 'down', 'left', 'right']
 
