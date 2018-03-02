@@ -20,7 +20,6 @@ def start():
         bottle.request.urlparts.netloc
     )
 
-    # TODO: Do things with data
 
     return {
         'color': '#00FF00',
@@ -41,10 +40,21 @@ def move():
     board_height = data['height']
     board_width = data['width']
 
+    #################################
+
+    def closestFood(self_snake, food_locations):
+        minDistance = 0
+        for food in food_locations:
+            if(self_snake[body][data]["x"]-food["x"] > minDistance) minDistance = self_snake[body][data]["x"]-food["x"]
+
+
 
 
 
     #Snake Logic will end up going here.
+
+
+
 
 
 
