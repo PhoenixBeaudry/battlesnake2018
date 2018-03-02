@@ -34,16 +34,19 @@ def move():
     data = bottle.request.json
 
     #Reading in game-state information.
-	
+
 	# complex data:
     self_snake = data['you'] #snake object
     enemy_snakes = data['snakes'] #list of snake objects
     food_locations = data['food'] #list of coordinates
-	
+
 	# integers:
     board_height = data['height']
     board_width = data['width']
 	turn_number = data['turn']
+
+    #create board with data
+    board = boardInit(data)
 
     #################################
 
@@ -51,21 +54,21 @@ def move():
 
 	#possible directions
     directions = ['up', 'down', 'left', 'right']
-	
+
 	#current snake head location [x,y]
 	cur_loc=[self_snake[body][data][0].x, self_snake[body][data][0].y]
-	
+
 	#step 1: remove possible directions which will certainly result in immediate death
 	for(each in directions):
 		valid=checkMove(each, cur_loc, board_width, board_height)
 		if not valid:
 			directions.remove(each)
-	
+
 	#step 2: if there is more than one valid move, apply advanced behaviour
 	#to narrow down the options
 	if(len(directions)>1):
 		dosomestuff()
-	
+
     return {
         'move': random.choice(directions),
         'taunt': 'battlesnake-python!'
@@ -81,9 +84,49 @@ def move():
 def dosomestuff():
 	return
 
-	
-	
+
+
 ####basic functions
+
+
+
+
+#BOARDINIT
+#Initialize 2d gameboard array
+#Enemy Heads: "E", Body: "e". Self Head: "S", Body: "s". Food: "F". Null: "0"
+def boardInit(data):
+    self_snake = data['you'] #snake object
+    enemy_snakes = data['snakes'] #list of snake objects
+    food_locations = data['food'] #list of coordinates
+    board_height = data['height']
+    board_width = data['width']
+
+    #Init Board
+    board = []
+    for i in range(board_width):
+        board.append([])
+    for i in range(10):
+        for j in range(board_height):
+            board[i].append(0)
+
+    #SelfSnake
+    board[self_snake["body"]["data"][0]["x"]][self_snake["body"]["data"][0]["y"]] = "S"
+    for point in self_snake["body"]["data"][1:]:
+        board[point["x"]][point["y"]] = "s"
+
+
+    #Enemy Snakes
+    for snake in enemy_snakes:
+        board[snake["body"]["data"][0]["x"]][snake["body"]["data"][0]["y"]] = "E"
+        for point in snake["body"]["data"][1:]:
+            board[point["x"]][point["y"]] = "e"
+
+    #Food
+    for food in food_locations["data"]:
+        board[food["x"]][food["y"]] = F
+
+    #Return board
+    return board
 
 #CLOSESTFOOD
 #takes the location of our snake head and a list of food coordinates
@@ -129,10 +172,10 @@ def checkArray(array, location, types):
 		if(array[location[0],location[1]]==each):
 			return true
 	return false
-	
+
 #DEST
 #returns the coordinate that would be moved to
-#if the move was submitted	
+#if the move was submitted
 def dest(move, current_location):
 	result={
 		'up': lambda [x,y]: [x,y+1]
