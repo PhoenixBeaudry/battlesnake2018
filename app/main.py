@@ -107,7 +107,7 @@ def nearWall(self_snake, board_height, board_width):
         if(self_snake[body][data][0]["x"] == 0):
             # return bottom and left
         # return bottom
-
+    return
 
 # Expose WSGI app (so gunicorn can find it)
 application = bottle.default_app()
