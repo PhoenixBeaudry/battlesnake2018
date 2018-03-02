@@ -58,7 +58,7 @@ def move():
 
 	#step 1: remove possible directions which will certainly result in immediate death
 	for each in directions:
-		valid=checkMove(each, cur_loc, board_width, board_height)
+		valid=checkMove(each, cur_loc, board_width, board_height, board)
 		if not valid:
 			directions.remove(each)
 
@@ -96,8 +96,7 @@ def boardInit(data):
     #Init Board
     board = []
     for i in range(board_width):
-        board.append([])
-    for i in range(10):
+		board.append([])
         for j in range(board_height):
             board[i].append(0)
 
@@ -138,10 +137,10 @@ def closestFood(head, food_locations):
 #CHECKMOVE
 #returns true if the move will not result in immediate death
 #otherwise, returns false
-def checkMove(possible_move, current_location, board_width, board_height):
+def checkMove(possible_move, current_location, board_width, board_height, board):
 	w=avoidWall(possible_move, current_location, board_width, board_height)
-	e=avoid(array, possible_move, current_location, [E,e]) #avoid enemies
-	s=avoid(array, possible_move, current_location, [S,s]) #avoid self
+	e=avoid(board, possible_move, current_location, [E,e]) #avoid enemies
+	s=avoid(board, possible_move, current_location, [S,s]) #avoid self
 	if(s and w and e):
 		return true
 	return false
