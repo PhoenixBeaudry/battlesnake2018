@@ -35,8 +35,6 @@ def move():
 
 	#Reading in game-state information.
 
-	
-
 	# complex data:
 	self_snake = data['you'] #snake object
 	enemy_snakes = data['snakes'] #list of snake objects
@@ -48,7 +46,7 @@ def move():
 	turn_number = data['turn']
 
 	#create board with data
-	board = boardInit(data)
+	board = boardInit(self_snake, enemy_snakes, food_locations, board_height, board_width)
 
 
 	'''
@@ -95,12 +93,8 @@ def dosomestuff():
 #BOARDINIT
 #Initialize 2d gameboard array
 #Enemy Heads: "E", Body: "e". Self Head: "S", Body: "s". Food: "F". Null: "0"
-def boardInit(data):
-	self_snake = data['you'] #snake object
-	enemy_snakes = data['snakes'] #list of snake objects
-	food_locations = data['food'] #list of coordinates
-	board_height = data['height']
-	board_width = data['width']
+def boardInit(self_snake, enemy_snakes, food_locations, board_height, board_width):
+
 	#Init Board
 	board = [board[:] for board in [[0] * board_width] * board_height]
 			
