@@ -47,12 +47,17 @@ def move():
 	#possible directions
     directions = ['up', 'down', 'left', 'right']
 	
-	#remove possible directions which will certainly result in immediate death
+	#step 1: remove possible directions which will certainly result in immediate death
 	for(each in directions):
 		valid=checkMove(each)
 		if not valid:
 			directions.remove(each)
-
+	
+	#step 2: if there is more than one valid move, apply advanced behaviour
+	#to narrow down the options
+	if(len(directions)>1):
+		dosomestuff()
+	
     return {
         'move': random.choice(directions),
         'taunt': 'battlesnake-python!'
@@ -62,6 +67,16 @@ def move():
 
 
 ############################### Functions
+
+####higher-order behaviour
+
+def dosomestuff():
+	return
+
+
+
+
+####basic functions
 
 def closestFood(self_snake, food_locations):
     minDistance = 0
