@@ -42,7 +42,8 @@ def move():
 
 	# integers:
 	board_height = data['height']
-	board_width = data['width']turn_number = data['turn']
+	board_width = data['width']
+	turn_number = data['turn']
 	#create board with data
 	board = boardInit(data)
 
