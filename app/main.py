@@ -89,7 +89,7 @@ def checkMove(possible_move):
 #returns true if the move is safe, false otherwise
 def avoid(array, move, current_location, types):
 	destination=dest(move, current_location)
-	result=!checkArray(array, destination, types)
+	result=not checkArray(array, destination, types)
 	return result
 
 #CHECKARRAY
