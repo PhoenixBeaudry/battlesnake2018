@@ -44,8 +44,8 @@ def move():
     board_height = data['height']
     board_width = data['width']
 	turn_number = data['turn']
-
-    #create board with data
+	
+	#create board with data
     board = boardInit(data)
 
     #################################
@@ -59,7 +59,7 @@ def move():
 	cur_loc=[self_snake[body][data][0].x, self_snake[body][data][0].y]
 
 	#step 1: remove possible directions which will certainly result in immediate death
-	for(each in directions):
+	for each in directions:
 		valid=checkMove(each, cur_loc, board_width, board_height)
 		if not valid:
 			directions.remove(each)
@@ -87,9 +87,6 @@ def dosomestuff():
 
 
 ####basic functions
-
-
-
 
 #BOARDINIT
 #Initialize 2d gameboard array
@@ -168,7 +165,7 @@ def avoid(array, move, current_location, types):
 #looks at the index specified by location and returns
 #true if it contains anything in [types], false otherwise
 def checkArray(array, location, types):
-	for(each in types):
+	for each in types:
 		if(array[location[0],location[1]]==each):
 			return true
 	return false
