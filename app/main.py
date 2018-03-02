@@ -57,7 +57,7 @@ def move():
 
 
 
-'''
+
 ############################### Functions
 
 def closestFood(self_snake, food_locations):
@@ -71,6 +71,7 @@ def closestFood(self_snake, food_locations):
 #CHECKMOVE
 #returns true if the move will not result in immediate death
 #otherwise, returns false
+'''
 def checkMove(possible_move):
 	s=avoidSelf()
 	w=avoidWall()
@@ -79,7 +80,7 @@ def checkMove(possible_move):
 		return true
 	return false
 
-
+'''
 
 
 def nearWall(self_snake, board_height, board_width):
@@ -109,7 +110,7 @@ def nearWall(self_snake, board_height, board_width):
         # return bottom
     return
 
-'''
+
 
 # Expose WSGI app (so gunicorn can find it)
 application = bottle.default_app()
