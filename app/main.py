@@ -46,7 +46,7 @@ def move():
 	turn_number = data['turn']
 
 	#create board with data
-        board = boardInit(data)
+	board = boardInit(data)
 
 	#Snake Logic:
 
