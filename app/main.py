@@ -102,11 +102,7 @@ def boardInit(data):
 	board_height = data['height']
 	board_width = data['width']
 	#Init Board
-	board = []
-	for i in range(board_width):
-		board.append([])
-		for j in range(board_height):
-			board[i].append(0)
+	board = [board[:] for board in [[0] * board_width] * board_height]
 			
 	#SelfSnake
 	board[self_snake["body"]["data"][0]["x"]][self_snake["body"]["data"][0]["y"]] = "S"
