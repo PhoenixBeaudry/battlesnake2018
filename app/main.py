@@ -135,12 +135,12 @@ def closestFood(head, food_locations):
 	min_dist=0
 	best=head
 	for food in food_locations:
-		delta_x=head[0]-food.x
-		delta_y=head[1]-food.y
+		delta_x=head[0]-food["x"]
+		delta_y=head[1]-food["y"]
 		distance=abs(delta_x)+abs(delta_y)
 		if(min_dist==0 or distance<min_dist):
 			min_dist=distance
-			best=[food.x, food.y]
+			best=[food["x"], food["y"]]
 	return best
 
 #CHECKMOVE
