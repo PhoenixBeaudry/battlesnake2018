@@ -170,10 +170,10 @@ def checkArray(array, location, types):
 #if the move was submitted
 def dest(move, current_location):
 	result={
-		'up': lambda [x,y]: [x,y-1]
-		'down': lambda [x,y]: [x,y+1]
-		'left': lambda [x,y]: [x-1,y]
-		'right': lambda [x,y]: [x+1,y]
+		'up': lambda x,y: [x,y-1]
+		'down': lambda x,y: [x,y+1]
+		'left': lambda x,y: [x-1,y]
+		'right': lambda x,y: [x+1,y]
 	}[move](current_location)
 	return result
 
