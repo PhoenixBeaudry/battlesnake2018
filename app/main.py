@@ -42,14 +42,14 @@ def move():
 
     #################################
 
-'''
+
     def closestFood(self_snake, food_locations):
        minDistance = 0
         for food in food_locations:
-            if(self_snake[body][data]["x"]-food["x"] > minDistance) minDistance = self_snake[body][data]["x"]-food["x"]
+            if(self_snake[body][data][0]["x"]-food["x"] > minDistance) minDistance = self_snake[body][data]["x"]-food["x"]
 
         return minDistance
-'''
+
 
 
     #Snake Logic will end up going here.
