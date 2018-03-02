@@ -115,7 +115,7 @@ def boardInit(data):
 
     #Food
     for food in food_locations["data"]:
-        board[food["x"]][food["y"]] = F
+        board[food["x"]][food["y"]] = "F"
 
     #Return board
     return board
