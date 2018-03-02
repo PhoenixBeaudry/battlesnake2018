@@ -87,37 +87,36 @@ def dosomestuff():
 #Initialize 2d gameboard array
 #Enemy Heads: "E", Body: "e". Self Head: "S", Body: "s". Food: "F". Null: "0"
 def boardInit(data):
-    self_snake = data['you'] #snake object
-    enemy_snakes = data['snakes'] #list of snake objects
-    food_locations = data['food'] #list of coordinates
-    board_height = data['height']
-    board_width = data['width']
-
+	self_snake = data['you'] #snake object
+	enemy_snakes = data['snakes'] #list of snake objects
+	food_locations = data['food'] #list of coordinates
+	board_height = data['height']
+	board_width = data['width']
 	#Init Board
 	board = []
 	for i in range(board_width):
 		board.append([])
 		for j in range(board_height):
 			board[i].append(0)
+			
+	#SelfSnake
+	board[self_snake["body"]["data"][0]["x"]][self_snake["body"]["data"][0]["y"]] = "S"
+	for point in self_snake["body"]["data"][1:]:
+		board[point["x"]][point["y"]] = "s"
 
-    #SelfSnake
-    board[self_snake["body"]["data"][0]["x"]][self_snake["body"]["data"][0]["y"]] = "S"
-    for point in self_snake["body"]["data"][1:]:
-        board[point["x"]][point["y"]] = "s"
 
+	#Enemy Snakes
+	for snake in enemy_snakes:
+		board[snake["body"]["data"][0]["x"]][snake["body"]["data"][0]["y"]] = "E"
+	for point in snake["body"]["data"][1:]:
+		board[point["x"]][point["y"]] = "e"
 
-    #Enemy Snakes
-    for snake in enemy_snakes:
-        board[snake["body"]["data"][0]["x"]][snake["body"]["data"][0]["y"]] = "E"
-        for point in snake["body"]["data"][1:]:
-            board[point["x"]][point["y"]] = "e"
-
-    #Food
-    for food in food_locations["data"]:
-        board[food["x"]][food["y"]] = "F"
-
-    #Return board
-    return board
+	#Food
+	for food in food_locations["data"]:
+		board[food["x"]][food["y"]] = "F"
+		
+	#Return board
+	return board
 
 #CLOSESTFOOD
 #takes the location of our snake head and a list of food coordinates
