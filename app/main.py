@@ -68,8 +68,8 @@ def move():
 		dosomestuff()
 	
 	return{
-		'move': random.choice(directions),
-		'taunt': 'battlesnake-python!'
+		"move": random.choice(directions),
+		"taunt": "battlesnake-python!"
 	}
 
 ############################### Functions
