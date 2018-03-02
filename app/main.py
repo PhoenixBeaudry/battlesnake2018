@@ -93,7 +93,7 @@ def boardInit(data):
     board_height = data['height']
     board_width = data['width']
 
-    #Init Board
+	#Init Board
 	board = []
 	for i in range(board_width):
 		board.append([])
