@@ -31,29 +31,36 @@ def start():
 
 @bottle.post('/move')
 def move():
-    data = bottle.request.json
+	data = bottle.request.json
 
-    #Reading in game-state information.
+	#Reading in game-state information.
 
 	# complex data:
-    self_snake = data['you'] #snake object
-    enemy_snakes = data['snakes'] #list of snake objects
-    food_locations = data['food'] #list of coordinates
+	self_snake = data['you'] #snake object
+	enemy_snakes = data['snakes'] #list of snake objects
+	food_locations = data['food'] #list of coordinates
 
 	# integers:
-    board_height = data['height']
-    board_width = data['width']
+	board_height = data['height']
+	board_width = data['width']
 	turn_number = data['turn']
+<<<<<<< HEAD
 	
 	#create board with data
     board = boardInit(data)
 
     #################################
+=======
+	#create board with data
+	board = boardInit(data)
 
-    #Snake Logic:
+	#################################
+>>>>>>> c2e52d51c94a39b6d693f87501b855e4f6af34ad
+
+	#Snake Logic:
 
 	#possible directions
-    directions = ['up', 'down', 'left', 'right']
+	directions = ['up', 'down', 'left', 'right']
 
 	#current snake head location [x,y]
 	cur_loc=[self_snake[body][data][0].x, self_snake[body][data][0].y]
