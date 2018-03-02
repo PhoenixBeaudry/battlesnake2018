@@ -73,15 +73,45 @@ def closestFood(self_snake, food_locations):
 #otherwise, returns false
 '''
 def checkMove(possible_move):
-	s=avoidSelf()
 	w=avoidWall()
-	e=avoidEnemy()
+	s=avoid(array, possible_move, current_location, [E,e])
+	e=avoid(array, possible_move, current_location, [S,s])
 	if(s and w and e):
 		return true
 	return false
 
 '''
 
+#AVOID
+#takes a move as input (up,down,left,right) and checks
+#to see if it will result in a collision with something specified in [types]
+#which is ***already there*** (important)
+#returns true if the move is safe, false otherwise
+def avoid(array, move, current_location, types):
+	destination=dest(move, current_location)
+	result=!checkArray(array, destination, types)
+	return result
+
+#CHECKARRAY
+#looks at the index specified by location and returns
+#true if it contains anything in [types], false otherwise
+def checkArray(array, location, types):
+	for(each in types):
+		if(array[location[0],location[1]]==each):
+			return true
+	return false
+	
+#DEST
+#returns the coordinate that would be moved to
+#if the move was submitted	
+def dest(move, current_location):
+	result={
+		'up': lambda [x,y]: [x,y+1]
+		'down': lambda [x,y]: [x,y-1]
+		'left': lambda [x,y]: [x-1,y]
+		'right': lambda [x,y]: [x+1,y]
+	}[move](current_location)
+	return result
 
 def nearWall(self_snake, board_height, board_width):
     if(self_snake[body][data][0]["x"] == board_width):
