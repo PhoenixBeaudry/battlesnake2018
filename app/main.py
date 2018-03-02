@@ -73,7 +73,7 @@ def closestFood(self_snake, food_locations):
 #otherwise, returns false
 '''
 def checkMove(possible_move):
-	w=avoidWall()
+	w=avoidWall(possible_move)
 	s=avoid(array, possible_move, current_location, [E,e])
 	e=avoid(array, possible_move, current_location, [S,s])
 	if(s and w and e):
@@ -113,32 +113,33 @@ def dest(move, current_location):
 	}[move](current_location)
 	return result
 
-def nearWall(self_snake, board_height, board_width):
-    if(self_snake[body][data][0]["x"] == board_width):
-        if(self_snake[body][data][0]["y"] == board_height):
-            # return right and bottom
-        if(self_snake[body][data][0]["y"] == 0):
-            # return right and top
-        # return right
-    if(self_snake[body][data][0]["x"] == 0):
-        if(self_snake[body][data][0]["y"] == board_height):
-            # return left and bottom
-        if(self_snake[body][data][0]["y"] == 0):
-            # return left and top
-        # return left
+
+def avoidWall(possible_move):
+    if(possible_move == "up"):
+        return missWallUp(self_snake, board_height, board_width)
+    if(possible_move == "left"):
+        return missWallLeft(self_snake, board_height, board_width)
+    if(possible_move == "right"):
+        return missWallRight(self_snake, board_height, board_width)
+    if(possible_move == "down"):
+        return missWallDown(self_snake, board_height, board_width)
+
+def missWallUp(self_snake, board_height, board_width):
     if(self_snake[body][data][0]["y"] == 0):
-        if(self_snake[body][data][0]["x"] == board_width):
-            # return top and right
-        if(self_snake[body][data][0]["x"] == 0):
-            # return top and left
-        # return top
+        return false
+    return true
+def missWallLeft(self_snake, board_height, board_width):
+    if(self_snake[body][data][0]["x"] == 0):
+        return false
+    return true
+def missWallRight(self_snake, board_height, board_width):
+    if(self_snake[body][data][0]["x"] == board_width):
+        return false
+    return true
+def missWallDown(self_snake, board_height, board_width):
     if(self_snake[body][data][0]["y"] == board_width):
-        if(self_snake[body][data][0]["x"] == board_width):
-            # return bottom and right
-        if(self_snake[body][data][0]["x"] == 0):
-            # return bottom and left
-        # return bottom
-    return
+        return false
+    return true
 
 
 
