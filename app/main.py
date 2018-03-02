@@ -35,7 +35,7 @@ def move():
 
 	#Reading in game-state information.
 
-	'''
+	
 
 	# complex data:
 	self_snake = data['you'] #snake object
@@ -50,6 +50,8 @@ def move():
 	#create board with data
 	board = boardInit(data)
 
+
+	'''
 	#Snake Logic:
 
 	#possible directions
