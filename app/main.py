@@ -48,7 +48,6 @@ def move():
 
 
 
-
     directions = ['up', 'down', 'left', 'right']
 
     return {
@@ -73,7 +72,10 @@ def closestFood(self_snake, food_locations):
 
 
 
+
+
+
 # Expose WSGI app (so gunicorn can find it)
 application = bottle.default_app()
 if __name__ == '__main__':
-    bottle.run(application, host=os.getenv('IP', '0.0.0.0'), port=os.getenv('PORT', '8080'))
+    bottle.run(application, host=os.getenv('IP', '0.0.0.0'), port=os.getenv('PORT', '80'))
