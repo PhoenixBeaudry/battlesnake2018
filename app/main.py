@@ -69,6 +69,16 @@ def closestFood(self_snake, food_locations):
 
     return minDistance
 
+#CHECKMOVE
+#returns true if the move will not result in immediate death
+#otherwise, returns false
+def checkMove(possible_move):
+	s=avoidSelf()
+	w=avoidWall()
+	e=avoidEnemy()
+	if(s&w&e)
+		return true
+	return false
 
 
 
