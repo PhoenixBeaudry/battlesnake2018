@@ -44,18 +44,9 @@ def move():
 	board_height = data['height']
 	board_width = data['width']
 	turn_number = data['turn']
-<<<<<<< HEAD
-	
+
 	#create board with data
     board = boardInit(data)
-
-    #################################
-=======
-	#create board with data
-	board = boardInit(data)
-
-	#################################
->>>>>>> c2e52d51c94a39b6d693f87501b855e4f6af34ad
 
 	#Snake Logic:
 
@@ -80,9 +71,6 @@ def move():
         'move': random.choice(directions),
         'taunt': 'battlesnake-python!'
     }
-
-
-
 
 ############################### Functions
 
