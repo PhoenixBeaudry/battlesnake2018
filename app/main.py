@@ -174,7 +174,7 @@ def dest(move, current_location):
 		'down': lambda x,y: [x,y+1]
 		'left': lambda x,y: [x-1,y]
 		'right': lambda x,y: [x+1,y]
-	}[move](current_location)
+	}[move](current_location[0], current location[1])
 	return result
 
 #returns false if the proposed move places us on a board wall
