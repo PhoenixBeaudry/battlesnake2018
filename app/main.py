@@ -47,7 +47,7 @@ def move():
         for food in food_locations:
             if(self_snake[body][data]["x"]-food["x"] > minDistance) minDistance = self_snake[body][data]["x"]-food["x"]
 
-
+        return minDistance
 
 
 
