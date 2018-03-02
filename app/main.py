@@ -73,7 +73,7 @@ def closestFood(self_snake, food_locations):
 #otherwise, returns false
 '''
 def checkMove(possible_move):
-	w=avoidWall(possible_move)
+	w=avoidWall(possible_move, current_location, board_width, board_height)
 	s=avoid(array, possible_move, current_location, [E,e])
 	e=avoid(array, possible_move, current_location, [S,s])
 	if(s and w and e):
@@ -113,35 +113,14 @@ def dest(move, current_location):
 	}[move](current_location)
 	return result
 
-
-def avoidWall(possible_move):
-    if(possible_move == "up"):
-        return missWallUp(self_snake, board_height, board_width)
-    if(possible_move == "left"):
-        return missWallLeft(self_snake, board_height, board_width)
-    if(possible_move == "right"):
-        return missWallRight(self_snake, board_height, board_width)
-    if(possible_move == "down"):
-        return missWallDown(self_snake, board_height, board_width)
-
-def missWallUp(self_snake, board_height, board_width):
-    if(self_snake[body][data][0]["y"] == 0):
-        return false
-    return true
-def missWallLeft(self_snake, board_height, board_width):
-    if(self_snake[body][data][0]["x"] == 0):
-        return false
-    return true
-def missWallRight(self_snake, board_height, board_width):
-    if(self_snake[body][data][0]["x"] == board_width):
-        return false
-    return true
-def missWallDown(self_snake, board_height, board_width):
-    if(self_snake[body][data][0]["y"] == board_width):
-        return false
-    return true
-
-
+#returns false if the proposed move places us on a board wall
+def avoidWall(possible_move, current_location, board_width, board_height):
+    destination = dest(possible_move, current_location)
+    if(destination[x] < 0 or destination[x] > board_width):
+        return False
+    if(destination[y] < 0 or destination[y] > board_height):
+        return False
+    return True
 
 # Expose WSGI app (so gunicorn can find it)
 application = bottle.default_app()
