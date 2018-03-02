@@ -66,11 +66,11 @@ def move():
 	#to narrow down the options
 	if(len(directions)>1):
 		dosomestuff()
-
-    return {
-        'move': random.choice(directions),
-        'taunt': 'battlesnake-python!'
-    }
+	
+	return{
+		'move': random.choice(directions),
+		'taunt': 'battlesnake-python!'
+	}
 
 ############################### Functions
 
