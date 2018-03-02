@@ -44,11 +44,14 @@ def move():
 
     #Snake Logic will end up going here.
 
-
-
-
-
+	#possible directions
     directions = ['up', 'down', 'left', 'right']
+	
+	#remove possible directions which will certainly result in immediate death
+	for(each in directions):
+		valid=checkMove(each)
+		if not valid:
+			directions.remove(each)
 
     return {
         'move': random.choice(directions),
@@ -71,16 +74,13 @@ def closestFood(self_snake, food_locations):
 #CHECKMOVE
 #returns true if the move will not result in immediate death
 #otherwise, returns false
-'''
 def checkMove(possible_move):
 	w=avoidWall(possible_move, current_location, board_width, board_height)
-	s=avoid(array, possible_move, current_location, [E,e])
-	e=avoid(array, possible_move, current_location, [S,s])
+	s=avoid(array, possible_move, current_location, [E,e]) #avoid enemies
+	e=avoid(array, possible_move, current_location, [S,s]) #avoid self
 	if(s and w and e):
 		return true
 	return false
-
-'''
 
 #AVOID
 #takes a move as input (up,down,left,right) and checks
