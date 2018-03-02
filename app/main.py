@@ -34,22 +34,30 @@ def move():
     data = bottle.request.json
 
     #Reading in game-state information.
-    self_snake = data['you']
-    enemy_snakes = data['snakes']
-    food_locations = data['food']
+	
+	# complex data:
+    self_snake = data['you'] #snake object
+    enemy_snakes = data['snakes'] #list of snake objects
+    food_locations = data['food'] #list of coordinates
+	
+	# integers:
     board_height = data['height']
     board_width = data['width']
+	turn_number = data['turn']
 
     #################################
 
-    #Snake Logic will end up going here.
+    #Snake Logic:
 
 	#possible directions
     directions = ['up', 'down', 'left', 'right']
 	
+	#current snake head location [x,y]
+	cur_loc=[self_snake[body][data][0].x, self_snake[body][data][0].y]
+	
 	#step 1: remove possible directions which will certainly result in immediate death
 	for(each in directions):
-		valid=checkMove(each)
+		valid=checkMove(each, cur_loc, board_width, board_height)
 		if not valid:
 			directions.remove(each)
 	
@@ -73,23 +81,29 @@ def move():
 def dosomestuff():
 	return
 
-
-
-
+	
+	
 ####basic functions
 
-def closestFood(self_snake, food_locations):
-    minDistance = 0
-    for food in food_locations:
-        if(self_snake[body][data][0]["x"]-food["x"] > minDistance):
-            minDistance = self_snake[body][data]["x"]-food["x"]
-
-    return minDistance
+#CLOSESTFOOD
+#takes the location of our snake head and a list of food coordinates
+#and returns the location [x,y] of the closest food particle
+def closestFood(head, food_locations):
+	min_dist=0
+	best=head
+	for food in food_locations:
+		delta_x=head[0]-food.x
+		delta_y=head[1]-food.y
+		distance=abs(delta_x)+abs(delta_y)
+		if(min_dist==0 or distance<min_dist):
+			min_dist=distance
+			best=food
+	return best
 
 #CHECKMOVE
 #returns true if the move will not result in immediate death
 #otherwise, returns false
-def checkMove(possible_move):
+def checkMove(possible_move, current_location, board_width, board_height):
 	w=avoidWall(possible_move, current_location, board_width, board_height)
 	s=avoid(array, possible_move, current_location, [E,e]) #avoid enemies
 	e=avoid(array, possible_move, current_location, [S,s]) #avoid self
