@@ -57,7 +57,7 @@ def move():
 
 
 
-
+'''
 ############################### Functions
 
 def closestFood(self_snake, food_locations):
@@ -108,6 +108,8 @@ def nearWall(self_snake, board_height, board_width):
             # return bottom and left
         # return bottom
     return
+
+'''
 
 # Expose WSGI app (so gunicorn can find it)
 application = bottle.default_app()
