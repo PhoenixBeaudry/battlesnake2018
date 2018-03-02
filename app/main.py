@@ -76,7 +76,7 @@ def checkMove(possible_move):
 	s=avoidSelf()
 	w=avoidWall()
 	e=avoidEnemy()
-	if(s&w&e)
+	if(s and w and e)
 		return true
 	return false
 
