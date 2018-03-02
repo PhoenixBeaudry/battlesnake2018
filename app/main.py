@@ -35,6 +35,8 @@ def move():
 
 	#Reading in game-state information.
 
+	'''
+
 	# complex data:
 	self_snake = data['you'] #snake object
 	enemy_snakes = data['snakes'] #list of snake objects
@@ -66,6 +68,11 @@ def move():
 	#to narrow down the options
 	if(len(directions)>1):
 		dosomestuff()
+
+	'''
+
+	#remove this after
+	directions = ['up', 'down', 'left', 'right']
 	
 	return{
 		'move': random.choice(directions),
