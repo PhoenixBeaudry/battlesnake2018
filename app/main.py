@@ -46,7 +46,7 @@ def move():
 	turn_number = data['turn']
 
 	#create board with data
-	board = boardInit(self_snake, enemy_snakes, food_locations, board_height, board_width)
+#	board = boardInit(self_snake, enemy_snakes, food_locations, board_height, board_width)
 
 	#Snake Logic:
 
@@ -54,23 +54,21 @@ def move():
 	directions = ['up', 'down', 'left', 'right']
 
 	#current snake head location [x,y]
-	cur_loc=[self_snake[body][data][0]["x"], self_snake[body][data][0]["y"]]
+	cur_loc=[self_snake['body']['data'][0]["x"], self_snake['body']['data'][0]["y"]]
 
-	'''
 	#step 1: remove possible directions which will certainly result in immediate death
 	for each in directions:
 		valid=checkMove(each, cur_loc, board_width, board_height, board)
 		if not valid:
 			directions.remove(each)
-	'''
-			
+
 	#step 2: if there is more than one valid move, apply advanced behaviour
 	#to narrow down the options
 	if(len(directions)>1):
 		dosomestuff()
 
 	return{
-		'move': 'right',
+		'move': random.choice(directions),
 		'taunt': "testHeadX"
 	}
 
@@ -131,9 +129,12 @@ def closestFood(head, food_locations):
 #returns true if the move will not result in immediate death
 #otherwise, returns false
 def checkMove(possible_move, current_location, board_width, board_height, board):
-	w=avoidWall(possible_move, current_location, board_width, board_height)
-	e=avoid(board, possible_move, current_location, [E,e]) #avoid enemies
-	s=avoid(board, possible_move, current_location, [S,s]) #avoid self
+	#w=avoidWall(possible_move, current_location, board_width, board_height)
+	w=True
+	e=True
+	s=True
+	#e=avoid(board, possible_move, current_location, [E,e]) #avoid enemies
+	#s=avoid(board, possible_move, current_location, [S,s]) #avoid self
 	if(s and w and e):
 		return True
 	return False
