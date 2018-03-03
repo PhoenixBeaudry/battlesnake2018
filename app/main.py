@@ -95,10 +95,10 @@ def findDist(a, b):
 def checkMove(possible_move, gamestate):
 	w=avoidWall(possible_move, gamestate)
 	#w=True
-	e=True
-	s=True
-	#e=avoid(gamestate, possible_move, [E,e]) #avoid enemies
-	#s=avoid(gamestate, possible_move, [S,s]) #avoid self
+	#e=True
+	#s=True
+	e=avoid(gamestate, possible_move, [E,e]) #avoid enemies
+	s=avoid(gamestate, possible_move, [S,s]) #avoid self
 	if(s and w and e):
 		return True
 	return False
@@ -136,12 +136,12 @@ def dest(move, head):
 
 #returns false if the proposed move places us on a board wall
 def avoidWall(possible_move, gamestate):
-	'''destination = dest(possible_move, gamestate.selfsnake.headpos)
+	destination = dest(possible_move, gamestate.selfsnake.headpos)
 	wallBuffer = 0
 	if(destination[0] < 0 + wallBuffer or destination[0] > gamestate.width - wallBuffer):
 		return False
 	if(destination[1] < 0 + wallBuffer or destination[1] > gamestate.height - wallBuffer):
-		return False'''
+		return False
 	return True
 
 # Expose WSGI app (so gunicorn can find it)
