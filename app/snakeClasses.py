@@ -15,10 +15,10 @@ class Board:
 		selfsnake = Snake(data['you'])
 
 		for snake in data['snakes']:
-			enemySnakes.append(Snake(self, snake))
+			enemySnakes.append(Snake(snake))
 
 		for food in data['food']:
-			foodList.append(Food(self, food))
+			foodList.append(Food(food))
 
 
 		board[selfsnake.headpos.x][selfsnake.headpos.y] = "S"
