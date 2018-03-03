@@ -45,10 +45,12 @@ def move():
 	board_width = data['width']
 	turn_number = data['turn']
 
+	testHeadX = self_snake[body][data][0]["x"]
+
 
 	
 	#create board with data
-	board = boardInit(self_snake, enemy_snakes, food_locations, board_height, board_width)
+#	board = boardInit(self_snake, enemy_snakes, food_locations, board_height, board_width)
 
 
 	
@@ -76,7 +78,7 @@ def move():
 	'''
 	return{
 		'move': random.choice(directions),
-		'taunt': 'battlesnake-python!'
+		'taunt': testHeadX
 	}
 
 ############################### Functions
