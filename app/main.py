@@ -45,11 +45,15 @@ def move():
 	board_width = data['width']
 	turn_number = data['turn']
 
-	testHeadX = data[you][body][data][0]['x']
+	testHeadX = self_snake['body']['data'][0]['x']
 
+
+	
 	#create board with data
 #	board = boardInit(self_snake, enemy_snakes, food_locations, board_height, board_width)
 
+
+	
 	#Snake Logic:
 
 	#possible directions
@@ -133,35 +137,6 @@ def closestFood(head, food_locations):
 #CHECKMOVE
 #returns true if the move will not result in immediate death
 #otherwise, returns false
-<<<<<<< HEAD
-def checkMove(possible_move):
-	s=avoidSelf(possible_move)
-	w=avoidWall(possible_move)
-	e=avoidEnemy(possible_move)
-	if(s and w and e):
-		return true
-	return false
-
-def avoidEnemy(move):
-	result={
-		'up': lambda [x,y]: [x,y+1]
-		'down': lambda [x,y]: [x,y-1]
-		'left': lambda [x,y]: [x-1,y]
-		'right': lambda [x,y]: [x+1,y]
-	}[value](move)
-
-
-#DEST
-#returns the coordinate that would be moved to
-#if the move was submitted	
-def dest(move):
-	if(move=='up'){
-	
-	}
-
-
-
-=======
 def checkMove(possible_move, current_location, board_width, board_height, board):
 	w=avoidWall(possible_move, current_location, board_width, board_height)
 	e=avoid(board, possible_move, current_location, [E,e]) #avoid enemies
@@ -210,7 +185,6 @@ def avoidWall(possible_move, current_location, board_width, board_height):
 	if(destination[1] < 0 + wallBuffer or destination[1] > board_height - wallBuffer):
 		return False
 	return True
->>>>>>> 51a8a69a97eb18da7312b11ceca61f6524668248
 
 # Expose WSGI app (so gunicorn can find it)
 application = bottle.default_app()
