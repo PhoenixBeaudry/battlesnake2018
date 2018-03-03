@@ -130,6 +130,7 @@ def closestFood(head, food_locations):
 #otherwise, returns false
 def checkMove(possible_move, current_location, board_width, board_height, board):
 	#w=avoidWall(possible_move, current_location, board_width, board_height)
+	w=True
 	e=avoid(board, possible_move, current_location, [E,e]) #avoid enemies
 	s=avoid(board, possible_move, current_location, [S,s]) #avoid self
 	if(s and w and e):
