@@ -40,8 +40,6 @@ class Board:
 			self.board[food.pos.x][food.pos.y] = "F"
 
 
-		return board
-
 
 
 
