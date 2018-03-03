@@ -41,8 +41,11 @@ class Board:
 
 
 class Snake:
-	headpos = Vector()
-	bodypos = []
+
+	def __init__(self):
+		health = 100
+		headpos = Vector()
+		bodypos = [];
 
 	def __init__(self, snakeInfo):
 		health = snakeInfo['health']
@@ -54,14 +57,22 @@ class Snake:
 
 
 class Food:
-	pos = Vector()
+
+	def __init__(self):
+		pos = Vector()
+
+
 	def __init__(self, foodInfo):
 		pos = Vector(foodInfo)
 
 
 class Vector:
-	x = -1
-	y = -1
+	
+	def __init__(self):
+		x = -1
+		y = -1
+
+
 	def __init__(self, point):
 		x = point['x']
 		y = point['y']
