@@ -58,7 +58,7 @@ class Snake:
 
 		self.bodypos = []
 		for point in snakeInfo['body']['data'][1:]:
-			bodypos.append(Vector(point))
+			self.bodypos.append(Vector(point))
 
 	def getPos():
 		snakeParts = []
