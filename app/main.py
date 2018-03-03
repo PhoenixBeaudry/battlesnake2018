@@ -78,7 +78,7 @@ def move():
 	'''
 	return{
 		'move': random.choice(directions),
-		'taunt': testHeadX
+		'taunt': "testHeadX"
 	}
 
 ############################### Functions
