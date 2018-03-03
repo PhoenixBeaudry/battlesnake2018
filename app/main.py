@@ -138,8 +138,8 @@ def checkMove(possible_move, current_location, board_width, board_height, board)
 	e=avoid(board, possible_move, current_location, [E,e]) #avoid enemies
 	s=avoid(board, possible_move, current_location, [S,s]) #avoid self
 	if(s and w and e):
-		return true
-	return false
+		return True
+	return False
 
 #AVOID
 #takes a move as input (up,down,left,right) and checks
@@ -157,8 +157,8 @@ def avoid(array, move, current_location, types):
 def checkArray(array, location, types):
 	for each in types:
 		if(array[location[0],location[1]]==each):
-			return true
-	return false
+			return True
+	return False
 
 #DEST
 #returns the coordinate that would be moved to
