@@ -3,7 +3,7 @@
 class Board:
 
 
-	def __init__(data):
+	def __init__(self, data):
 
 		height = data['board']
 		width = data['width']
@@ -42,7 +42,7 @@ class Board:
 
 class Snake:
 
-	def __init__(snakeInfo):
+	def __init__(self, snakeInfo):
 		health = snakeInfo['health']
 		headpos = Vector(snakeInfo['body']['data'][0])
 
@@ -52,13 +52,13 @@ class Snake:
 
 
 class Food:
-	def __init__(foodInfo):
+	def __init__(self, foodInfo):
 		pos = Vector(foodInfo)
 
 
 class Vector:
 	x = -1
 	y = -1
-	def __init__(point):
+	def __init__(self, point):
 		x = point['x']
 		y = point['y']
