@@ -185,8 +185,8 @@ class Board:
 
 		for enemy in enemySnakes:
 			board[enemy.headpos.x][enemy.headpos.y] = "E"
-				for bodypart in enemy.bodypos:
-					board[bodypart.x][bodypart.y] = "e"
+			for bodypart in enemy.bodypos:
+				board[bodypart.x][bodypart.y] = "e"
 
 		for food in foodList:
 			board[food.pos.x][food.pos.y] = "F"
