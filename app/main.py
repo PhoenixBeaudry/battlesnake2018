@@ -42,10 +42,12 @@ def move():
 	directions = ['up', 'down', 'left', 'right']
 
 	#step 1: remove possible directions which will certainly result in immediate death
+	'''
 	for each in directions:
 		valid=checkMove(each, gamestate)
 		if not valid:
 			directions.remove(each)
+	'''
 
 	#step 2: if there is more than one valid move, apply advanced behaviour
 	#to narrow down the options
