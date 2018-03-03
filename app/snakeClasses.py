@@ -14,11 +14,11 @@ class Board:
 
 		selfsnake = Snake(data['you'])
 
-		for snake in data['snakes']:
-			enemySnakes.append(Snake(self, snake))
+		for snake in data['snakes']['data']:
+			enemySnakes.append(Snake(snake))
 
-		for food in data['food']:
-			foodList.append(Food(self, food))
+		for food in data['food']['data']:
+			foodList.append(Food(food))
 
 
 		board[selfsnake.headpos.x][selfsnake.headpos.y] = "S"
@@ -41,6 +41,8 @@ class Board:
 
 
 class Snake:
+	headpos = Vector()
+	bodypos = []
 
 	def __init__(self, snakeInfo):
 		health = snakeInfo['health']
@@ -52,6 +54,7 @@ class Snake:
 
 
 class Food:
+	pos = Vector()
 	def __init__(self, foodInfo):
 		pos = Vector(foodInfo)
 
