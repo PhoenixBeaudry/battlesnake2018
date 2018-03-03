@@ -1,16 +1,16 @@
 #Classes
 ########################################################################
 class Board:
-	board = [board[:] for board in [[0] * board_width] * board_height]
-	turn = 0
-	height = data['board']
-	width = data['width']
-	enemySnakes = []
-	foodList = []
 
 
 	def __init__(data):
 
+		height = data['board']
+		width = data['width']
+		board = [board[:] for board in [[0] * board_width] * board_height]
+		turn = data['turn']
+		enemySnakes = []
+		foodList = []
 
 		selfsnake = Snake(data['you'])
 
