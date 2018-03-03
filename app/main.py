@@ -82,7 +82,7 @@ def dangerZone(snake, esnakes, fn):
 		enemyreg=findRegion(each)
 		overlap=regionOverlap(snakereg, enemyreg)
 		if overlap:
-			count++
+			count += 1
 	return count
 
 #REGIONOVERLAP
