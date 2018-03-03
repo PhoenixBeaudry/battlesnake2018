@@ -42,11 +42,7 @@ def move():
 	directions = ['up', 'down', 'left', 'right']
 
 	#current snake head location [x,y]
-<<<<<<< HEAD
 	cur_loc=gamestate.selfsnake.headpos
-=======
-	cur_loc=[self_snake['body']['data'][0]['x'], self_snake['body']['data'][0]['y']]
->>>>>>> 3c33162ee1c91ecc52d4108004a5d0ae5ca9ff58
 
 	#step 1: remove possible directions which will certainly result in immediate death
 	for each in directions:
@@ -71,16 +67,7 @@ def move():
 def dosomestuff():
 	return
 
-<<<<<<< HEAD
-	
-	
-	
-=======
-
-
 ####basic functions
-
->>>>>>> 3c33162ee1c91ecc52d4108004a5d0ae5ca9ff58
 
 #CLOSESTFOOD
 #takes the location of our snake head and a list of food coordinates
