@@ -46,7 +46,7 @@ def move():
 	turn_number = data['turn']
 
 	#create board with data
-#	board = boardInit(self_snake, enemy_snakes, food_locations, board_height, board_width)
+	board = boardInit(self_snake, enemy_snakes, food_locations, board_height, board_width)
 
 	#Snake Logic:
 
@@ -57,10 +57,10 @@ def move():
 	cur_loc=[self_snake['body']['data'][0]["x"], self_snake['body']['data'][0]["y"]]
 
 	#step 1: remove possible directions which will certainly result in immediate death
-	#for each in directions:
-		#valid=checkMove(each, cur_loc, board_width, board_height, board)
-		#if not valid:
-		#	directions.remove(each)
+	for each in directions:
+		valid=checkMove(each, cur_loc, board_width, board_height, board)
+		if not valid:
+			directions.remove(each)
 
 	#step 2: if there is more than one valid move, apply advanced behaviour
 	#to narrow down the options
