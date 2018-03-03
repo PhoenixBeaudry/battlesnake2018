@@ -129,8 +129,8 @@ def closestFood(head, food_locations):
 #returns true if the move will not result in immediate death
 #otherwise, returns false
 def checkMove(possible_move, current_location, board_width, board_height, board):
-	#w=avoidWall(possible_move, current_location, board_width, board_height)
-	w=True
+	w=avoidWall(possible_move, current_location, board_width, board_height)
+	#w=True
 	e=True
 	s=True
 	#e=avoid(board, possible_move, current_location, [E,e]) #avoid enemies
