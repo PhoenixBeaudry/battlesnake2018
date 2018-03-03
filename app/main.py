@@ -54,7 +54,7 @@ def move():
 	directions = ['up', 'down', 'left', 'right']
 
 	#current snake head location [x,y]
-	cur_loc=[self_snake['body']['data'][0]["x"], self_snake['body']['data'][0]["y"]]
+	cur_loc=[self_snake['body']['data'][0]['x'], self_snake['body']['data'][0]['y']]
 
 	#step 1: remove possible directions which will certainly result in immediate death
 	for each in directions:
@@ -83,32 +83,6 @@ def dosomestuff():
 
 ####basic functions
 
-#BOARDINIT
-#Initialize 2d gameboard array
-#Enemy Heads: "E", Body: "e". Self Head: "S", Body: "s". Food: "F". Null: "0"
-def boardInit(self_snake, enemy_snakes, food_locations, board_height, board_width):
-
-	#Init Board
-	board = [board[:] for board in [[0] * board_width] * board_height]
-			
-	#SelfSnake
-	board[self_snake["body"]["data"][0]["x"]][self_snake["body"]["data"][0]["y"]] = "S"
-	for point in self_snake["body"]["data"][1:]:
-		board[point["x"]][point["y"]] = "s"
-
-
-	#Enemy Snakes
-	for snake in enemy_snakes:
-		board[snake["body"]["data"][0]["x"]][snake["body"]["data"][0]["y"]] = "E"
-	for point in snake["body"]["data"][1:]:
-		board[point["x"]][point["y"]] = "e"
-
-	#Food
-	for food in food_locations["data"]:
-		board[food["x"]][food["y"]] = "F"
-		
-	#Return board
-	return board
 
 #CLOSESTFOOD
 #takes the location of our snake head and a list of food coordinates
