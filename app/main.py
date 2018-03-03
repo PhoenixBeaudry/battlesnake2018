@@ -66,10 +66,10 @@ def dosomestuff():
 	return
 
 
-#DIRTOFOOD
+#DIRTOTARGET
 #takes current location and a target and returns a subset of directions[]
-#which bring it closer to food
-def dirToFood(head, target, directions):
+#which bring it closer to the target
+def dirToTarget(head, target, directions):
 	options=[]
 	for each in directions:
 		distfromcurr=findDist(head, target)
