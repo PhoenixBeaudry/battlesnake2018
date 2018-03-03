@@ -36,16 +36,16 @@ def move():
 	#Reading in game-state information.
 
 	# complex data:
-	self_snake = data['you'] #snake object
-	enemy_snakes = data['snakes'] #list of snake objects
-	food_locations = data['food'] #list of coordinates
+#	self_snake = data['you'] #snake object
+#	enemy_snakes = data['snakes'] #list of snake objects
+#	food_locations = data['food'] #list of coordinates
 
 	# integers:
 	board_height = data['height']
 	board_width = data['width']
 	turn_number = data['turn']
 
-	testHeadX = data['you']['body']['data'][0]['x']
+#	testHeadX = data['you']['body']['data'][0]['x']
 
 
 	
@@ -78,7 +78,7 @@ def move():
 	'''
 	return{
 		'move': random.choice(directions),
-		'taunt': testHeadX
+		'taunt': "Help."
 	}
 
 ############################### Functions
