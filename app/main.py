@@ -65,6 +65,20 @@ def move():
 def dosomestuff():
 	return
 
+
+#DIRTOFOOD
+#takes current location and a target and returns a subset of directions[]
+#which bring it closer to food
+def dirToFood(head, target, directions):
+	options=[]
+	for each in directions:
+		distfromcurr=findDist(head, target)
+		destination=dest(each, gamestate.selfsnake.headpos)
+		distifmove=findDist(destination, target)
+		if(distifmove<distfromcurr):
+			options.append(each)
+	return options
+	
 ####basic functions
 
 #CLOSESTFOOD
