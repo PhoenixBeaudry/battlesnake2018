@@ -171,10 +171,10 @@ class Board:
 
 		selfsnake = Snake(data['you'])
 
-		for snake in data['snakes']
+		for snake in data['snakes']:
 			enemySnakes.append(Snake(snake))
 
-		for food in data['food']
+		for food in data['food']:
 			foodList.append(Food(food))
 
 
