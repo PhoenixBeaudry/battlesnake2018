@@ -1,12 +1,7 @@
 import bottle
 import os
 import random
-<<<<<<< HEAD
 from .snakeClasses import *
-=======
-from .app import snakeClasses
->>>>>>> 12186ac2fede2b65fcc02666273df7a0eda17005
-
 
 @bottle.route('/static/<path:path>')
 def static(path):
