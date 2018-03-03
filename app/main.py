@@ -70,7 +70,7 @@ def move():
 		dosomestuff()
 
 	return{
-		'move': 'right',
+		'move': random.choice(directions),
 		'taunt': "testHeadX"
 	}
 
