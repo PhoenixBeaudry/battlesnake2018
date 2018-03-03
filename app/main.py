@@ -45,7 +45,7 @@ def move():
 	board_width = data['width']
 	turn_number = data['turn']
 
-	
+
 	'''
 	#create board with data
 	board = boardInit(self_snake, enemy_snakes, food_locations, board_height, board_width)
@@ -75,9 +75,14 @@ def move():
 
 	#remove this after
 	directions = ['up', 'down', 'left', 'right']
+
+	if(turn_number%2 == 0):
+		move = 'up'
+	else:
+		move = 'right'
 	
 	return{
-		'move': random.choice(directions),
+		'move': move,
 		'taunt': 'battlesnake-python!'
 	}
 
