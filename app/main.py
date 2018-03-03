@@ -41,12 +41,9 @@ def move():
 	#possible directions
 	directions = ['up', 'down', 'left', 'right']
 
-	#current snake head location [x,y]
-	cur_loc=gamestate.selfsnake.headpos
-
 	#step 1: remove possible directions which will certainly result in immediate death
 	for each in directions:
-		valid=checkMove(each, cur_loc, board_width, board_height, gamestate)
+		valid=checkMove(each, gamestate)
 		if not valid:
 			directions.remove(each)
 
@@ -95,13 +92,13 @@ def findDist(a, b):
 #CHECKMOVE
 #returns true if the move will not result in immediate death
 #otherwise, returns false
-def checkMove(possible_move, current_location, board_width, board_height, gamestate):
-	w=avoidWall(possible_move, current_location, board_width, board_height)
+def checkMove(possible_move, gamestate):
+	w=avoidWall(possible_move, gamestate)
 	#w=True
 	e=True
 	s=True
-	#e=avoid(board, possible_move, current_location, [E,e]) #avoid enemies
-	#s=avoid(board, possible_move, current_location, [S,s]) #avoid self
+	#e=avoid(gamestate, possible_move, [E,e]) #avoid enemies
+	#s=avoid(gamestate, possible_move, [S,s]) #avoid self
 	if(s and w and e):
 		return True
 	return False
@@ -111,39 +108,39 @@ def checkMove(possible_move, current_location, board_width, board_height, gamest
 #to see if it will result in a collision with something specified in [types]
 #which is ***already there*** (important)
 #returns true if the move is safe, false otherwise
-def avoid(array, move, current_location, types):
-	destination=dest(move, current_location)
-	result=not checkArray(array, destination, types)
+def avoid(gamestate, move, types):
+	destination=dest(move, gamestate.selfsnake.headpos)
+	result=not checkState(gamestate, destination, types)
 	return result
 
-#CHECKARRAY
+#CHECKSTATE
 #looks at the index specified by location and returns
 #true if it contains anything in [types], false otherwise
-def checkArray(array, location, types):
+def checkState(gamestate, location, types):
 	for each in types:
-		if(array[location[0],location[1]]==each):
+		if(gamestate.board[location[0],location[1]]==each):
 			return True
 	return False
 
 #DEST
 #returns the coordinate that would be moved to
 #if the move was submitted
-def dest(move, current_location):
+def dest(move, head):
 	result={
 		'up': lambda x,y: [x,y-1],
 		'down': lambda x,y: [x,y+1],
 		'left': lambda x,y: [x-1,y],
 		'right': lambda x,y: [x+1,y]
-	}[move](current_location)
+	}[move](head)
 	return result
 
 #returns false if the proposed move places us on a board wall
-def avoidWall(possible_move, current_location, board_width, board_height):
-	'''destination = dest(possible_move, current_location)
+def avoidWall(possible_move, gamestate):
+	'''destination = dest(possible_move, gamestate.selfsnake.headpos)
 	wallBuffer = 0
-	if(destination[0] < 0 + wallBuffer or destination[0] > board_width - wallBuffer):
+	if(destination[0] < 0 + wallBuffer or destination[0] > gamestate.width - wallBuffer):
 		return False
-	if(destination[1] < 0 + wallBuffer or destination[1] > board_height - wallBuffer):
+	if(destination[1] < 0 + wallBuffer or destination[1] > gamestate.height - wallBuffer):
 		return False'''
 	return True
 
