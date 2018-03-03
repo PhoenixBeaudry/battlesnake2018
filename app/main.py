@@ -41,12 +41,12 @@ def move():
 	directions = ['up', 'down', 'left', 'right']
 
 	#step 1: remove possible directions which will certainly result in immediate death
-	'''
+	
 	for each in directions:
 		valid=checkMove(each, gamestate)
 		if not valid:
 			directions.remove(each)
-	'''
+	
 
 	#step 2: if there is more than one valid move, apply advanced behaviour
 	#to narrow down the options
@@ -61,7 +61,7 @@ def move():
 ############################### Functions
 
 ####higher-order behaviour
-
+	
 def dosomestuff():
 	return
 
@@ -182,8 +182,8 @@ def checkMove(possible_move, gamestate):
 	#w=True
 	#e=True
 	#s=True
-	e=avoid(gamestate, possible_move, [E,e]) #avoid enemies
-	s=avoid(gamestate, possible_move, [S,s]) #avoid self
+	e=avoid(gamestate, possible_move, ["E","e"]) #avoid enemies
+	s=avoid(gamestate, possible_move, ["S","s"]) #avoid self
 	if(s and w and e):
 		return True
 	return False
@@ -216,7 +216,7 @@ def dest(move, head):
 		'down': lambda x,y: [x,y+1],
 		'left': lambda x,y: [x-1,y],
 		'right': lambda x,y: [x+1,y]
-	}[move](head)
+	}[move](head.x, head.y)
 	return result
 
 #returns false if the proposed move places us on a board wall
