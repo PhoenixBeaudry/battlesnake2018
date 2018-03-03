@@ -45,11 +45,13 @@ def move():
 	board_width = data['width']
 	turn_number = data['turn']
 
+	
+	'''
 	#create board with data
 	board = boardInit(self_snake, enemy_snakes, food_locations, board_height, board_width)
 
 
-	'''
+	
 	#Snake Logic:
 
 	#possible directions
