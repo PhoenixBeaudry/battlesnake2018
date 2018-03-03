@@ -174,13 +174,13 @@ def dest(move, current_location):
 
 #returns false if the proposed move places us on a board wall
 def avoidWall(possible_move, current_location, board_width, board_height):
-    destination = dest(possible_move, current_location)
+	destination = dest(possible_move, current_location)
 	wallBuffer = 0
-    if(destination[0] < 0 + wallBuffer or destination[0] > board_width - wallBuffer):
-        return False
-    if(destination[1] < 0 + wallBuffer or destination[1] > board_height - wallBuffer):
-        return False
-    return True
+	if(destination[0] < 0 + wallBuffer or destination[0] > board_width - wallBuffer):
+		return False
+	if(destination[1] < 0 + wallBuffer or destination[1] > board_height - wallBuffer):
+		return False
+	return True
 
 # Expose WSGI app (so gunicorn can find it)
 application = bottle.default_app()
