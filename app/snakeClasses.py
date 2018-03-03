@@ -20,24 +20,24 @@ class Board:
 		self.selfsnake = Snake(data['you'])
 
 		for snake in data['snakes']['data']:
-			enemySnakes.append(Snake(snake))
+			self.enemySnakes.append(Snake(snake))
 
 		for food in data['food']['data']:
-			foodList.append(Food(food))
+			self.foodList.append(Food(food))
 
 
-		board[selfsnake.headpos.x][selfsnake.headpos.y] = "S"
-		for bodypart in selfsnake.bodypos:
-			board[bodypart.x][bodypart.y] = "s"
+		board[self.selfsnake.headpos.x][self.selfsnake.headpos.y] = "S"
+		for bodypart in self.selfsnake.bodypos:
+			self.board[bodypart.x][bodypart.y] = "s"
 
 
-		for enemy in enemySnakes:
-			board[enemy.headpos.x][enemy.headpos.y] = "E"
+		for enemy in self.enemySnakes:
+			self.board[enemy.headpos.x][enemy.headpos.y] = "E"
 			for bodypart in enemy.bodypos:
-				board[bodypart.x][bodypart.y] = "e"
+				self.board[bodypart.x][bodypart.y] = "e"
 
-		for food in foodList:
-			board[food.pos.x][food.pos.y] = "F"
+		for food in self.foodList:
+			self.board[food.pos.x][food.pos.y] = "F"
 
 
 		return board
