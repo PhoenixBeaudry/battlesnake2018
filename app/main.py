@@ -46,7 +46,7 @@ def move():
 	turn_number = data['turn']
 
 
-	'''
+	
 	#create board with data
 	board = boardInit(self_snake, enemy_snakes, food_locations, board_height, board_width)
 
@@ -68,18 +68,9 @@ def move():
 
 	#step 2: if there is more than one valid move, apply advanced behaviour
 	#to narrow down the options
-	if(len(directions)>1):
-		dosomestuff()
+#	if(len(directions)>1):
+#		dosomestuff()
 
-	'''
-
-	#remove this after
-	directions = ['up', 'down', 'left', 'right']
-
-	if(turn_number%2 == 0):
-		move = 'up'
-	else:
-		move = 'right'
 	
 	return{
 		'move': move,
