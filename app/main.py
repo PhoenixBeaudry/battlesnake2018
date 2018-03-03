@@ -56,14 +56,12 @@ def move():
 	#current snake head location [x,y]
 	cur_loc=[self_snake['body']['data'][0]["x"], self_snake['body']['data'][0]["y"]]
 
-	'''
 	#step 1: remove possible directions which will certainly result in immediate death
 	for each in directions:
 		valid=checkMove(each, cur_loc, board_width, board_height, board)
 		if not valid:
 			directions.remove(each)
-	'''
-			
+
 	#step 2: if there is more than one valid move, apply advanced behaviour
 	#to narrow down the options
 	if(len(directions)>1):
