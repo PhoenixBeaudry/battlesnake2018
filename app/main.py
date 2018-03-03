@@ -146,7 +146,7 @@ def dest(move, head):
 		'down': lambda x,y: [x,y+1],
 		'left': lambda x,y: [x-1,y],
 		'right': lambda x,y: [x+1,y]
-	}[move](head)
+	}[move](head.x, head.y)
 	return result
 
 #returns false if the proposed move places us on a board wall
