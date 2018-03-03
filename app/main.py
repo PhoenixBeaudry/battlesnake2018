@@ -45,7 +45,7 @@ def move():
 	board_width = data['width']
 	turn_number = data['turn']
 
-	testHeadX = self_snake[body][data[0]]["x"]
+	testHeadX = self_snake[body][data][0]]["x"]
 
 
 	
