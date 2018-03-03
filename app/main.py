@@ -58,7 +58,6 @@ def move():
 
 	#step 1: remove possible directions which will certainly result in immediate death
 	for each in directions:
-		'taunt': "oops"
 		valid=checkMove(each, cur_loc, board_width, board_height, board)
 		if not valid:
 			directions.remove(each)
@@ -70,7 +69,7 @@ def move():
 
 	return{
 		'move': random.choice(directions),
-		'taunt'
+		'taunt': "testHeadX"
 	}
 
 ############################### Functions
