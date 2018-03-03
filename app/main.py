@@ -1,6 +1,7 @@
 import bottle
 import os
 import random
+import snakeClasses
 
 
 @bottle.route('/static/<path:path>')
@@ -31,22 +32,9 @@ def start():
 
 @bottle.post('/move')
 def move():
+
 	data = bottle.request.json
-
-	#Reading in game-state information.
-
-	# complex data:
-	self_snake = data['you'] #snake object
-	enemy_snakes = data['snakes'] #list of snake objects
-	food_locations = data['food'] #list of coordinates
-
-	# integers:
-	board_height = data['height']
-	board_width = data['width']
-	turn_number = data['turn']
-
-	#create board with data
-	board = boardInit(self_snake, enemy_snakes, food_locations, board_height, board_width)
+	gamestate=Board(data)
 
 	#Snake Logic:
 
@@ -54,11 +42,11 @@ def move():
 	directions = ['up', 'down', 'left', 'right']
 
 	#current snake head location [x,y]
-	cur_loc=[self_snake['body']['data'][0]["x"], self_snake['body']['data'][0]["y"]]
+	cur_loc=gamestate.selfsnake.headpos
 
 	#step 1: remove possible directions which will certainly result in immediate death
 	for each in directions:
-		valid=checkMove(each, cur_loc, board_width, board_height, board)
+		valid=checkMove(each, cur_loc, board_width, board_height, gamestate)
 		if not valid:
 			directions.remove(each)
 
@@ -79,36 +67,9 @@ def move():
 def dosomestuff():
 	return
 
-
-
-####basic functions
-
-#BOARDINIT
-#Initialize 2d gameboard array
-#Enemy Heads: "E", Body: "e". Self Head: "S", Body: "s". Food: "F". Null: "0"
-def boardInit(self_snake, enemy_snakes, food_locations, board_height, board_width):
-
-	#Init Board
-	board = [board[:] for board in [[0] * board_width] * board_height]
-			
-	#SelfSnake
-	board[self_snake["body"]["data"][0]["x"]][self_snake["body"]["data"][0]["y"]] = "S"
-	for point in self_snake["body"]["data"][1:]:
-		board[point["x"]][point["y"]] = "s"
-
-
-	#Enemy Snakes
-	for snake in enemy_snakes:
-		board[snake["body"]["data"][0]["x"]][snake["body"]["data"][0]["y"]] = "E"
-	for point in snake["body"]["data"][1:]:
-		board[point["x"]][point["y"]] = "e"
-
-	#Food
-	for food in food_locations["data"]:
-		board[food["x"]][food["y"]] = "F"
-		
-	#Return board
-	return board
+	
+	
+	
 
 #CLOSESTFOOD
 #takes the location of our snake head and a list of food coordinates
@@ -117,18 +78,26 @@ def closestFood(head, food_locations):
 	min_dist=0
 	best=head
 	for food in food_locations:
-		delta_x=head[0]-food["x"]
-		delta_y=head[1]-food["y"]
-		distance=abs(delta_x)+abs(delta_y)
+		thisfood=[food["x"],food["y"]]
+		distance=findDist(head, thisfood)
 		if(min_dist==0 or distance<min_dist):
 			min_dist=distance
 			best=[food["x"], food["y"]]
 	return best
+	
+#FINDDIST
+#takes two points and returns the distance to travel between them
+def findDist(a, b):
+	dx=abs(a[0]-b[0])
+	dy=abs(a[1]-b[1])
+	return dx+dy
 
+####basic functions
+	
 #CHECKMOVE
 #returns true if the move will not result in immediate death
 #otherwise, returns false
-def checkMove(possible_move, current_location, board_width, board_height, board):
+def checkMove(possible_move, current_location, board_width, board_height, gamestate):
 	w=avoidWall(possible_move, current_location, board_width, board_height)
 	#w=True
 	e=True
