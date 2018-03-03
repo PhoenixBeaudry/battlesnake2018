@@ -26,7 +26,7 @@ class Board:
 			self.foodList.append(Food(food))
 
 
-		board[self.selfsnake.headpos.x][self.selfsnake.headpos.y] = "S"
+		self.board[self.selfsnake.headpos.x][self.selfsnake.headpos.y] = "S"
 		for bodypart in self.selfsnake.bodypos:
 			self.board[bodypart.x][bodypart.y] = "s"
 
