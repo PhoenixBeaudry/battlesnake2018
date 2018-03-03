@@ -45,7 +45,7 @@ def move():
 	board_width = data['width']
 	turn_number = data['turn']
 
-	testHeadX = data['you']['body']['data'][0['x']]
+	testHeadX = data['you']['body']['data'][0]['x']
 
 
 	
@@ -180,9 +180,9 @@ def dest(move, current_location):
 def avoidWall(possible_move, current_location, board_width, board_height):
 	destination = dest(possible_move, current_location)
 	wallBuffer = 0
-	if(destination[0] < 0 + wallBuffer or destination[0] > board_width - 1 - wallBuffer):
+	if(destination[0] < 0 + wallBuffer or destination[0] > board_width - wallBuffer):
 		return False
-	if(destination[1] < 0 + wallBuffer or destination[1] > board_height - 1 - wallBuffer):
+	if(destination[1] < 0 + wallBuffer or destination[1] > board_height - wallBuffer):
 		return False
 	return True
 
