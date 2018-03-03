@@ -12,7 +12,7 @@ class Board:
 
 		self.height = data['height']
 		self.width = data['width']
-		self.board = [board[:] for board in [[0] * width] * height]
+		self.board = [board[:] for board in [[0] * self.width] * self.height]
 		self.turn = data['turn']
 		self.enemySnakes = []
 		self.foodList = []
