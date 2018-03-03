@@ -175,9 +175,10 @@ def dest(move, current_location):
 #returns false if the proposed move places us on a board wall
 def avoidWall(possible_move, current_location, board_width, board_height):
     destination = dest(possible_move, current_location)
-    if(destination[0] < 0 or destination[0] > board_width):
+	wallBuffer = 0
+    if(destination[0] < 0 + wallBuffer or destination[0] > board_width - wallBuffer):
         return False
-    if(destination[1] < 0 or destination[1] > board_height):
+    if(destination[1] < 0 + wallBuffer or destination[1] > board_height - wallBuffer):
         return False
     return True
 
