@@ -17,7 +17,7 @@ class Board:
 		for snake in data['snakes']['data']:
 			enemySnakes.append(Snake(snake))
 
-		for food in data['food']:
+		for food in data['food']['data']:
 			foodList.append(Food(food))
 
 
