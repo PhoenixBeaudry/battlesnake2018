@@ -31,42 +31,117 @@ def start():
 
 @bottle.post('/move')
 def move():
-    data = bottle.request.json
+	data = bottle.request.json
 
-    #Reading in game-state information.
-    self_snake = data['you']
-    enemy_snakes = data['snakes']
-    food_locations = data['food']
-    board_height = data['height']
-    board_width = data['width']
+	#Reading in game-state information.
 
-    #################################
+	# complex data:
+	self_snake = data['you'] #snake object
+	enemy_snakes = data['snakes'] #list of snake objects
+	food_locations = data['food'] #list of coordinates
 
-    #Snake Logic will end up going here.
+	# integers:
+	board_height = data['height']
+	board_width = data['width']
+	turn_number = data['turn']
 
+<<<<<<< HEAD
     directions = ['up', 'down', 'left', 'right']
-
-    return {
-        'move': random.choice(directions),
-        'taunt': 'battlesnake-python!'
-    }
+=======
+	testHeadX = self_snake[body][data][0]["x"]
 
 
+	
+	#create board with data
+#	board = boardInit(self_snake, enemy_snakes, food_locations, board_height, board_width)
 
+
+	
+	#Snake Logic:
+>>>>>>> 51a8a69a97eb18da7312b11ceca61f6524668248
+
+	#possible directions
+	directions = ['up', 'down', 'left', 'right']
+
+	'''
+
+	#current snake head location [x,y]
+	cur_loc=[self_snake[body][data][0]["x"], self_snake[body][data][0]["y"]]
+
+	#step 1: remove possible directions which will certainly result in immediate death
+	for each in directions:
+		valid=checkMove(each, cur_loc, board_width, board_height, board)
+		if not valid:
+			directions.remove(each)
+
+	#step 2: if there is more than one valid move, apply advanced behaviour
+	#to narrow down the options
+#	if(len(directions)>1):
+#		dosomestuff()
+
+	'''
+	return{
+		'move': random.choice(directions),
+		'taunt': testHeadX
+	}
 
 ############################### Functions
 
-def closestFood(self_snake, food_locations):
-    minDistance = 0
-    for food in food_locations:
-        if(self_snake[body][data][0]["x"]-food["x"] > minDistance) 
-            minDistance = self_snake[body][data]["x"]-food["x"]
+####higher-order behaviour
 
-    return minDistance
+def dosomestuff():
+	return
+
+
+
+####basic functions
+
+#BOARDINIT
+#Initialize 2d gameboard array
+#Enemy Heads: "E", Body: "e". Self Head: "S", Body: "s". Food: "F". Null: "0"
+def boardInit(self_snake, enemy_snakes, food_locations, board_height, board_width):
+
+	#Init Board
+	board = [board[:] for board in [[0] * board_width] * board_height]
+			
+	#SelfSnake
+	board[self_snake["body"]["data"][0]["x"]][self_snake["body"]["data"][0]["y"]] = "S"
+	for point in self_snake["body"]["data"][1:]:
+		board[point["x"]][point["y"]] = "s"
+
+
+	#Enemy Snakes
+	for snake in enemy_snakes:
+		board[snake["body"]["data"][0]["x"]][snake["body"]["data"][0]["y"]] = "E"
+	for point in snake["body"]["data"][1:]:
+		board[point["x"]][point["y"]] = "e"
+
+	#Food
+	for food in food_locations["data"]:
+		board[food["x"]][food["y"]] = "F"
+		
+	#Return board
+	return board
+
+#CLOSESTFOOD
+#takes the location of our snake head and a list of food coordinates
+#and returns the location [x,y] of the closest food particle
+def closestFood(head, food_locations):
+	min_dist=0
+	best=head
+	for food in food_locations:
+		delta_x=head[0]-food["x"]
+		delta_y=head[1]-food["y"]
+		distance=abs(delta_x)+abs(delta_y)
+		if(min_dist==0 or distance<min_dist):
+			min_dist=distance
+			best=[food["x"], food["y"]]
+	return best
 
 #CHECKMOVE
 #returns true if the move will not result in immediate death
 #otherwise, returns false
+<<<<<<< HEAD
 def checkMove(possible_move):
 	s=avoidSelf(possible_move)
 	w=avoidWall(possible_move)
@@ -94,8 +169,58 @@ def dest(move):
 
 
 
+=======
+def checkMove(possible_move, current_location, board_width, board_height, board):
+	w=avoidWall(possible_move, current_location, board_width, board_height)
+	e=avoid(board, possible_move, current_location, [E,e]) #avoid enemies
+	s=avoid(board, possible_move, current_location, [S,s]) #avoid self
+	if(s and w and e):
+		return True
+	return False
+
+#AVOID
+#takes a move as input (up,down,left,right) and checks
+#to see if it will result in a collision with something specified in [types]
+#which is ***already there*** (important)
+#returns true if the move is safe, false otherwise
+def avoid(array, move, current_location, types):
+	destination=dest(move, current_location)
+	result=not checkArray(array, destination, types)
+	return result
+
+#CHECKARRAY
+#looks at the index specified by location and returns
+#true if it contains anything in [types], false otherwise
+def checkArray(array, location, types):
+	for each in types:
+		if(array[location[0],location[1]]==each):
+			return True
+	return False
+
+#DEST
+#returns the coordinate that would be moved to
+#if the move was submitted
+def dest(move, current_location):
+	result={
+		'up': lambda x,y: [x,y-1],
+		'down': lambda x,y: [x,y+1],
+		'left': lambda x,y: [x-1,y],
+		'right': lambda x,y: [x+1,y]
+	}[move](current_location)
+	return result
+
+#returns false if the proposed move places us on a board wall
+def avoidWall(possible_move, current_location, board_width, board_height):
+	destination = dest(possible_move, current_location)
+	wallBuffer = 0
+	if(destination[0] < 0 + wallBuffer or destination[0] > board_width - wallBuffer):
+		return False
+	if(destination[1] < 0 + wallBuffer or destination[1] > board_height - wallBuffer):
+		return False
+	return True
+>>>>>>> 51a8a69a97eb18da7312b11ceca61f6524668248
 
 # Expose WSGI app (so gunicorn can find it)
 application = bottle.default_app()
 if __name__ == '__main__':
-    bottle.run(application, host=os.getenv('IP', '0.0.0.0'), port=os.getenv('PORT', '80'))
+    bottle.run(application, host=os.getenv('IP', '0.0.0.0'), port=os.getenv('PORT', '8080'))
