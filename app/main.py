@@ -129,11 +129,11 @@ def closestFood(head, food_locations):
 #returns true if the move will not result in immediate death
 #otherwise, returns false
 def checkMove(possible_move, current_location, board_width, board_height, board):
-	#w=avoidWall(possible_move, current_location, board_width, board_height)
-	w=True
-	#e=True
+	w=avoidWall(possible_move, current_location, board_width, board_height)
+	#w=True
+	e=True
 	s=True
-	e=avoid(board, possible_move, current_location, [E,e]) #avoid enemies
+	#e=avoid(board, possible_move, current_location, [E,e]) #avoid enemies
 	#s=avoid(board, possible_move, current_location, [S,s]) #avoid self
 	if(s and w and e):
 		return True
@@ -172,12 +172,12 @@ def dest(move, current_location):
 
 #returns false if the proposed move places us on a board wall
 def avoidWall(possible_move, current_location, board_width, board_height):
-	destination = dest(possible_move, current_location)
+	'''destination = dest(possible_move, current_location)
 	wallBuffer = 0
 	if(destination[0] < 0 + wallBuffer or destination[0] > board_width - wallBuffer):
 		return False
 	if(destination[1] < 0 + wallBuffer or destination[1] > board_height - wallBuffer):
-		return False
+		return False'''
 	return True
 
 # Expose WSGI app (so gunicorn can find it)
