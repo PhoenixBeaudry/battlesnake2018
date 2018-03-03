@@ -44,10 +44,6 @@ def move():
 
     #Snake Logic will end up going here.
 
-
-
-
-
     directions = ['up', 'down', 'left', 'right']
 
     return {
@@ -72,15 +68,29 @@ def closestFood(self_snake, food_locations):
 #returns true if the move will not result in immediate death
 #otherwise, returns false
 def checkMove(possible_move):
-	s=avoidSelf()
-	w=avoidWall()
-	e=avoidEnemy()
-	if(s and w and e)
+	s=avoidSelf(possible_move)
+	w=avoidWall(possible_move)
+	e=avoidEnemy(possible_move)
+	if(s and w and e):
 		return true
 	return false
 
+def avoidEnemy(move):
+	result={
+		'up': lambda [x,y]: [x,y+1]
+		'down': lambda [x,y]: [x,y-1]
+		'left': lambda [x,y]: [x-1,y]
+		'right': lambda [x,y]: [x+1,y]
+	}[value](move)
 
 
+#DEST
+#returns the coordinate that would be moved to
+#if the move was submitted	
+def dest(move):
+	if(move=='up'){
+	
+	}
 
 
 
