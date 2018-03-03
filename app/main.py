@@ -46,7 +46,7 @@ def move():
 	turn_number = data['turn']
 
 	#create board with data
-#	board = boardInit(self_snake, enemy_snakes, food_locations, board_height, board_width)
+	#board = boardInit(self_snake, enemy_snakes, food_locations, board_height, board_width)
 
 	#Snake Logic:
 
@@ -57,10 +57,10 @@ def move():
 	cur_loc=[self_snake['body']['data'][0]['x'], self_snake['body']['data'][0]['y']]
 
 	#step 1: remove possible directions which will certainly result in immediate death
-	for each in directions:
+	'''for each in directions:
 		valid=checkMove(each, cur_loc, board_width, board_height, board)
 		if not valid:
-			directions.remove(each)
+			directions.remove(each)'''
 
 	#step 2: if there is more than one valid move, apply advanced behaviour
 	#to narrow down the options
@@ -103,8 +103,8 @@ def closestFood(head, food_locations):
 #returns true if the move will not result in immediate death
 #otherwise, returns false
 def checkMove(possible_move, current_location, board_width, board_height, board):
-	#w=avoidWall(possible_move, current_location, board_width, board_height)
-	w=True
+	w=avoidWall(possible_move, current_location, board_width, board_height)
+	#w=True
 	e=True
 	s=True
 	#e=avoid(board, possible_move, current_location, [E,e]) #avoid enemies
@@ -146,12 +146,12 @@ def dest(move, current_location):
 
 #returns false if the proposed move places us on a board wall
 def avoidWall(possible_move, current_location, board_width, board_height):
-	destination = dest(possible_move, current_location)
+	'''destination = dest(possible_move, current_location)
 	wallBuffer = 0
 	if(destination[0] < 0 + wallBuffer or destination[0] > board_width - wallBuffer):
 		return False
 	if(destination[1] < 0 + wallBuffer or destination[1] > board_height - wallBuffer):
-		return False
+		return False'''
 	return True
 
 # Expose WSGI app (so gunicorn can find it)
