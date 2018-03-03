@@ -5,14 +5,14 @@ class Board:
 
 	def __init__(self, data):
 
-		height = data['height']
-		width = data['width']
-		board = [board[:] for board in [[0] * width] * height]
-		turn = data['turn']
-		enemySnakes = []
-		foodList = []
+		self.height = data['height']
+		self.width = data['width']
+		self.board = [board[:] for board in [[0] * width] * height]
+		self.turn = data['turn']
+		self.enemySnakes = []
+		self.foodList = []
 
-		selfsnake = Snake(data['you'])
+		self.selfsnake = Snake(data['you'])
 
 		for snake in data['snakes']['data']:
 			enemySnakes.append(Snake(snake))
@@ -43,36 +43,43 @@ class Board:
 class Snake:
 
 	def __init__(self):
-		health = 100
-		headpos = Vector()
-		bodypos = [];
+		self.health = 100
+		self.headpos = Vector()
+		self.bodypos = [];
 
 	def __init__(self, snakeInfo):
-		health = snakeInfo['health']
-		headpos = Vector(snakeInfo['body']['data'][0])
+		self.health = snakeInfo['health']
+		self.headpos = Vector(snakeInfo['body']['data'][0])
 
-		bodypos = []
+		self.bodypos = []
 		for point in snakeInfo['body']['data'][1:]:
 			bodypos.append(Vector(point))
+
+	def getPos()
+		snakeParts = []
+		snakeParts.append(self.headpos)
+		for bodypart in bodypos:
+			snakeParts.append(bodypart)
+		return snakeParts
 
 
 class Food:
 
 	def __init__(self):
-		pos = Vector()
+		self.pos = Vector()
 
 
 	def __init__(self, foodInfo):
-		pos = Vector(foodInfo)
+		self.pos = Vector(foodInfo)
 
 
 class Vector:
 	
 	def __init__(self):
-		x = -1
-		y = -1
+		self.x = -1
+		self.y = -1
 
 
 	def __init__(self, point):
-		x = point['x']
-		y = point['y']
+		self.x = point['x']
+		self.y = point['y']
