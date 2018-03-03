@@ -45,7 +45,7 @@ class Snake:
 	def __init__(self):
 		self.health = 100
 		self.headpos = Vector()
-		self.bodypos = [];
+		self.bodypos = []
 
 	def __init__(self, snakeInfo):
 		self.health = snakeInfo['health']
