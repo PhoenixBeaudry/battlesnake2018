@@ -45,7 +45,7 @@ def move():
 	board_width = data['width']
 	turn_number = data['turn']
 
-#	testHeadX = data['you']['body']['data'][0]['x']
+	testHeadX = data['you']['body']['data'][0]['x']
 
 
 	
@@ -78,7 +78,7 @@ def move():
 	'''
 	return{
 		'move': random.choice(directions),
-		'taunt': "Help."
+		'taunt': testHeadX
 	}
 
 ############################### Functions
