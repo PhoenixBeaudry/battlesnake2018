@@ -36,21 +36,21 @@ def move():
 	#Reading in game-state information.
 
 	# complex data:
-#	self_snake = data['you'] #snake object
-#	enemy_snakes = data['snakes'] #list of snake objects
-#	food_locations = data['food'] #list of coordinates
+	self_snake = data['you'] #snake object
+	enemy_snakes = data['snakes'] #list of snake objects
+	food_locations = data['food'] #list of coordinates
 
 	# integers:
 	board_height = data['height']
 	board_width = data['width']
 	turn_number = data['turn']
 
-	testHeadX = data['you']['body']['data'][0]['x']
+	#testHeadX = data['you']['body']['data'][0]['x']
 
 
 	
 	#create board with data
-#	board = boardInit(self_snake, enemy_snakes, food_locations, board_height, board_width)
+	board = boardInit(self_snake, enemy_snakes, food_locations, board_height, board_width)
 
 
 	
@@ -59,7 +59,7 @@ def move():
 	#possible directions
 	directions = ['up', 'down', 'left', 'right']
 
-	'''
+	
 
 	#current snake head location [x,y]
 	cur_loc=[self_snake[body][data][0]["x"], self_snake[body][data][0]["y"]]
@@ -72,10 +72,10 @@ def move():
 
 	#step 2: if there is more than one valid move, apply advanced behaviour
 	#to narrow down the options
-#	if(len(directions)>1):
-#		dosomestuff()
+	if(len(directions)>1):
+		dosomestuff()
 
-	'''
+
 	return{
 		'move': random.choice(directions),
 		'taunt': "testHeadX"
