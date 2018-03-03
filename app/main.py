@@ -65,6 +65,76 @@ def move():
 def dosomestuff():
 	return
 
+#FOODREGION
+#takes a snake (typically ours) and a food particle (typically nearest)
+#and returns the region bordering both the food and our snake
+def foodRegion(snake, foodlocation):
+	particles=snake.getPos()
+	particles=particles.append(foodlocation)
+	return findRegion(particles)
+		
+#DANGERZONE
+#returns the # of enemy snakes inside the region defined by findRegion
+def dangerZone(snake, esnakes, fn):
+	count=0
+	snakereg=fn(snake)
+	for each in esnakes:
+		enemyreg=findRegion(each)
+		overlap=regionOverlap(snakereg, enemyreg)
+		if overlap:
+			count++
+	return count
+
+#REGIONOVERLAP
+#determins whether two input regions overlap, returns true if so
+def regionOverlap(a, b):
+	if b[0]>a[1] or b[1]<a[0] or b[2]>a[3] or b[3]<a[2]:
+		return False
+	return True
+	
+#takes a snake and returns the smallest box-shaped region
+#that inludes it
+def findRegion(snake):
+	minx=findLeftBorder(snake)
+	maxx=findRightBorder(snake)
+	miny=findTopBorder(snake)
+	maxy=findBottomBorder(snake)
+	return [minx, maxx, miny, maxy]
+
+#####
+#HELPER FUNCTIONS FOR FINDREGION METHOD
+def findLeftBorder(snake):
+	segments=snake.getPos()
+	minx=snake.headPos.x
+	for segment in segments:
+		if segment.x<minx:
+			minx=segment.x
+	return minx
+	
+def findRightBorder(snake):
+	segments=snake.getPos()
+	maxx=snake.headPos.x
+	for segment in segments:
+		if segment.x>maxx:
+			maxx=segment.x
+	return maxx
+	
+def findTopBorder(snake):
+	segments=snake.getPos()
+	miny=snake.headPos.y
+	for segment in segments:
+		if segment.y<miny:
+			miny=segment.y
+	return miny
+	
+def findBottomBorder(snake):
+	segments=snake.getPos()
+	maxy=snake.headPos.y
+	for segment in segments:
+		if segment.y>maxy:
+			maxx=segment.y
+	return maxy
+#####
 
 #DIRTOTARGET
 #takes current location and a target and returns a subset of directions[]
