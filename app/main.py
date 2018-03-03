@@ -57,6 +57,8 @@ def move():
 	#possible directions
 	directions = ['up', 'down', 'left', 'right']
 
+	'''
+
 	#current snake head location [x,y]
 	cur_loc=[self_snake[body][data][0]["x"], self_snake[body][data][0]["y"]]
 
@@ -71,7 +73,7 @@ def move():
 #	if(len(directions)>1):
 #		dosomestuff()
 
-	
+	'''
 	return{
 		'move': random.choice(directions),
 		'taunt': 'battlesnake-python!'
