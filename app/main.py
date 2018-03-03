@@ -112,8 +112,8 @@ def checkMove(possible_move, gamestate):
 	#w=True
 	#e=True
 	#s=True
-	e=avoid(gamestate, possible_move, [E,e]) #avoid enemies
-	s=avoid(gamestate, possible_move, [S,s]) #avoid self
+	e=avoid(gamestate, possible_move, ["E","e"]) #avoid enemies
+	s=avoid(gamestate, possible_move, ["S","s"]) #avoid self
 	if(s and w and e):
 		return True
 	return False
