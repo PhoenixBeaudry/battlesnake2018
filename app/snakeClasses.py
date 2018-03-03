@@ -5,7 +5,7 @@ class Board:
 
 	def __init__(self, data):
 
-		height = data['board']
+		height = data['height']
 		width = data['width']
 		board = [board[:] for board in [[0] * board_width] * board_height]
 		turn = data['turn']
