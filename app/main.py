@@ -180,11 +180,10 @@ def closestFood(head, food_locations):
 	min_dist=0
 	best=head
 	for food in food_locations:
-		thisfood=pointsToVector(food.x,food.y)
-		distance=findDist(head, thisfood)
+		distance=findDist(head, food)
 		if(min_dist==0 or distance<min_dist):
 			min_dist=distance
-			best=pointsToVector(food.x, food.y)
+			best=food
 	return best
 	
 #FINDDIST
