@@ -37,7 +37,7 @@ class Board:
 				self.board[bodypart.x][bodypart.y] = "e"
 
 		for food in self.foodList:
-			self.board[food.pos.x][food.pos.y] = "F"
+			self.board[food.x][food.y] = "F"
 
 
 
