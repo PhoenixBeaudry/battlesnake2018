@@ -68,9 +68,6 @@ class Snake:
 
 class Food:
 
-	def __init__(self):
-		self.pos = Vector()
-
 
 	def __init__(self, foodInfo):
 		self.pos = Vector(foodInfo)
