@@ -71,7 +71,7 @@ def narrowOptions(gamestate, directions, FOODBUFFER):
 	POINTBUFFERX = int(gamestate.width)/4
 	POINTBUFFERY = int(gamestate.height)/4
 
-	safePoints = [pointsToVector(POINTBUFFERX, POINTBUFFERY), pointsToVector(gamestate.width-POINTBUFFERX), pointsToVector(POINTBUFFERX, gamestate.height-POINTBUFFERY), pointsToVector(gamestate.width-POINTBUFFERX, gamestate.height-POINTBUFFERY)]
+	safePoints = [pointsToVector(POINTBUFFERX, POINTBUFFERY), pointsToVector(gamestate.width-POINTBUFFERX, POINTBUFFERY), pointsToVector(POINTBUFFERX, gamestate.height-POINTBUFFERY), pointsToVector(gamestate.width-POINTBUFFERX, gamestate.height-POINTBUFFERY)]
 
 	tempdirs = dirToTarget(gamestate.selfsnake.headpos, closestFood(gamestate.selfsnake.headpos, safePoints), directions)
 
