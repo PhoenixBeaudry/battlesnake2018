@@ -64,8 +64,10 @@ def move():
 ####higher-order behaviour
 	
 def narrowOptions(gamestate, directions, FOODBUFFER):
+	tempdirs = []
 	if(gamestate.selfsnake.health < FOODBUFFER):
 		tempdirs = dirToTarget(gamestate.selfsnake.headpos, closestFood(gamestate.selfsnake.headpos, gamestate.foodList), directions)
+
 
 	return tempdirs
 
