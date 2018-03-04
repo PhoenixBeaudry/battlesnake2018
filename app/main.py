@@ -180,7 +180,7 @@ def closestFood(head, food_locations):
 	min_dist=0
 	best=head
 	for food in food_locations:
-		distance=findDist(head, food)
+		distance=findDist(head, food.pos)
 		if(min_dist==0 or distance<min_dist):
 			min_dist=distance
 			best=food
