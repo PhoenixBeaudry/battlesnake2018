@@ -16,8 +16,7 @@ class Board:
 		self.selfsnake = Snake(data['you'])
 
 		for snake in data['snakes']['data']:
-			if(snake['health'] > 0)
-				self.enemySnakes.append(Snake(snake))
+			self.enemySnakes.append(Snake(snake))
 
 		for food in data['food']['data']:
 			self.foodList.append(Vector(food))
