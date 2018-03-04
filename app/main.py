@@ -224,7 +224,7 @@ def avoid(gamestate, move, types):
 #true if it contains anything in [types], false otherwise
 def checkState(gamestate, location, types):
 	for each in types:
-		if(gamestate.board[location[0]][location[1]]==each):
+		if(gamestate.board[location.x][location.y]==each):
 			return True
 	return False
 
