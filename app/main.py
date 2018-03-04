@@ -34,6 +34,7 @@ def move():
 
 	data = bottle.request.json
 	gamestate = Board(data)
+	FOODBUFFER = 90
 
 	#Snake Logic:
 
@@ -51,7 +52,7 @@ def move():
 	#step 2: if there is more than one valid move, apply advanced behaviour
 	#to narrow down the options
 	if(len(directions)>1):
-		dosomestuff()
+		narrowOptions(directions, FOODBUFFER)
 
 	return{
 		'move': random.choice(directions),
@@ -62,8 +63,11 @@ def move():
 
 ####higher-order behaviour
 	
-def dosomestuff():
-	return
+def narrowOptions(directions, FOODBUFFER):
+	if(gamestate.selfsnake.health < FOODBUFFER):
+		tempdirs = dirToTarget(gamestate.selfsnake.headpos, closestFood(gamestate.selfsnake.headpos, gamestate.foodList), directions)
+
+	return tempdirs
 
 
 #DIRTOTARGET
