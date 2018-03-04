@@ -66,7 +66,7 @@ def move():
 def narrowOptions(gamestate, directions, FOODBUFFER):
 	tempdirs = []
 	if(gamestate.selfsnake.health < FOODBUFFER):
-		tempdirs = dirToTarget(gamestate.selfsnake.headpos, closestFood(gamestate.selfsnake.headpos, gamestate.foodList), directions)
+		tempdirs = dirToTarget(gamestate.selfsnake.headpos, closestFood(gamestate.selfsnake.headpos, gamestate.foodList), directions, gamestate)
 
 	POINTBUFFERX = int(gamestate.width)/4
 	POINTBUFFERY = int(gamestate.height)/4
@@ -161,7 +161,7 @@ def findBottomBorder(snake):
 #DIRTOTARGET
 #takes current location and a target and returns a subset of directions[]
 #which bring it closer to the target
-def dirToTarget(head, target, directions):
+def dirToTarget(head, target, directions, gamestate):
 	options=[]
 	for each in directions:
 		distfromcurr=findDist(head, target)
