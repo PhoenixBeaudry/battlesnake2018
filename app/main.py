@@ -245,9 +245,9 @@ def dest(move, head):
 def avoidWall(possible_move, gamestate):
 	destination = dest(possible_move, gamestate.selfsnake.headpos)
 	wallBuffer = 0
-	if(destination[0] < 0 + wallBuffer or destination[0] > gamestate.width - 1 - wallBuffer):
+	if(destination.x < 0 + wallBuffer or destination.x > gamestate.width - 1 - wallBuffer):
 		return False
-	if(destination[1] < 0 + wallBuffer or destination[1] > gamestate.height - 1 - wallBuffer):
+	if(destination.y < 0 + wallBuffer or destination.y > gamestate.height - 1 - wallBuffer):
 		return False
 	return True
 
