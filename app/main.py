@@ -34,7 +34,7 @@ def move():
 
 	data = bottle.request.json
 	gamestate = Board(data)
-	FOODBUFFER = 90
+	FOODBUFFER = 40
 
 	#Snake Logic:
 
