@@ -56,7 +56,7 @@ def move():
 
 	return{
 		'move': random.choice(directions),
-		'taunt': "testHeadX"
+		'taunt': "Stopped crashing at 5:12PM"
 	}
 
 ############################### Functions
