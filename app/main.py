@@ -241,6 +241,7 @@ def dest(move, head):
 	}[move](head.x, head.y)
 	return result
 
+#AVOIDWALL
 #returns false if the proposed move places us on a board wall
 def avoidWall(possible_move, gamestate):
 	destination = dest(possible_move, gamestate.selfsnake.headpos)
