@@ -68,14 +68,22 @@ def narrowOptions(gamestate, directions, FOODBUFFER):
 	if(gamestate.selfsnake.health < FOODBUFFER):
 		tempdirs = dirToTarget(gamestate.selfsnake.headpos, closestFood(gamestate.selfsnake.headpos, gamestate.foodList), directions)
 
-	POINTBUFFERX = gamestate.width/4
-	POINTBUFFERY = gamestate.height/4
+	POINTBUFFERX = int(gamestate.width)/4
+	POINTBUFFERY = int(gamestate.height)/4
 
-	safePoints = [Vector(POINTBUFFERX, POINTBUFFERY), Vector(gamestate.width-POINTBUFFERX), Vector(POINTBUFFERX, gamestate.height-POINTBUFFERY), Vector(gamestate.width-POINTBUFFERX, gamestate.height-POINTBUFFERY)]
+	safePoints = [pointsToVector(POINTBUFFERX, POINTBUFFERY), pointsToVector(gamestate.width-POINTBUFFERX), pointsToVector(POINTBUFFERX, gamestate.height-POINTBUFFERY), pointsToVector(gamestate.width-POINTBUFFERX, gamestate.height-POINTBUFFERY)]
 
 	tempdirs = dirToTarget(gamestate.selfsnake.headpos, closestFood(gamestate.selfsnake.headpos, safePoints), directions)
 
 	return tempdirs
+
+
+
+def pointsToVector(x, y):
+
+	tempDictionary = {'x':  x, 'y': y}
+
+	return Vector(tempDictionary)
 
 #FOODREGION
 #takes a snake (typically ours) and a food particle (typically nearest)
