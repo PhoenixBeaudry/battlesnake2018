@@ -23,7 +23,7 @@ class Board:
 			self.enemySnakes.append(Snake(snake))
 
 		for food in data['food']['data']:
-			self.foodList.append(Food(food))
+			self.foodList.append(Vector(food))
 
 
 		self.board[self.selfsnake.headpos.x][self.selfsnake.headpos.y] = "S"
