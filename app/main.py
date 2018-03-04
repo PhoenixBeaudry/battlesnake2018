@@ -184,7 +184,7 @@ def closestFood(head, food_locations):
 		if(min_dist==0 or distance<min_dist):
 			min_dist=distance
 			best=food
-	return best
+	return best.pos
 	
 #FINDDIST
 #takes two points and returns the distance to travel between them
