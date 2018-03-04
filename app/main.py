@@ -190,8 +190,8 @@ def closestFood(head, food_locations):
 #FINDDIST
 #takes two points and returns the distance to travel between them
 def findDist(a, b):
-	dx=abs(a[0]-b[0])
-	dy=abs(a[1]-b[1])
+	dx=abs(a.x-b.x)
+	dy=abs(a.y-b.y)
 	return dx+dy
 
 ####basic functions
