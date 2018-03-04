@@ -86,10 +86,11 @@ def pointsToVector(x, y):
 	return Vector(tempDictionary)
 
 #FOODREGION
-#takes a snake (typically ours) and a food particle (typically nearest)
+#takes a snake's head (typically ours) and a food particle (typically nearest)
 #and returns the region bordering both the food and our snake
-def foodRegion(snake, foodlocation):
-	particles=snake.getPos()
+def foodRegion(head, foodlocation):
+	particles=[]
+	particles=particles.append(snake.headPos())
 	particles=particles.append(foodlocation)
 	return findRegion(particles)
 		
@@ -111,7 +112,8 @@ def regionOverlap(a, b):
 	if b[0]>a[1] or b[1]<a[0] or b[2]>a[3] or b[3]<a[2]:
 		return False
 	return True
-	
+
+#FINDREGION
 #takes a snake and returns the smallest box-shaped region
 #that inludes it
 def findRegion(snake):
@@ -242,7 +244,7 @@ def dest(move, head):
 #returns false if the proposed move places us on a board wall
 def avoidWall(possible_move, gamestate):
 	destination = dest(possible_move, gamestate.selfsnake.headpos)
-	wallBuffer = 2
+	wallBuffer = 0
 	if(destination[0] < 0 + wallBuffer or destination[0] > gamestate.width - 1 - wallBuffer):
 		return False
 	if(destination[1] < 0 + wallBuffer or destination[1] > gamestate.height - 1 - wallBuffer):
