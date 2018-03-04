@@ -5,6 +5,8 @@ class Board:
 
 
 	def __init__(self, data):
+		self.height = 100
+		self.width = 100
 
 		self.height = data['height']
 		self.width = data['width']
