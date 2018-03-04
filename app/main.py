@@ -238,16 +238,16 @@ def dest(move, head):
 		'left': lambda x,y: [x-1,y],
 		'right': lambda x,y: [x+1,y]
 	}[move](head.x, head.y)
-	return result
+	return pointsToVector(result[0], result[1])
 
 #AVOIDWALL
 #returns false if the proposed move places us on a board wall
 def avoidWall(possible_move, gamestate):
 	destination = dest(possible_move, gamestate.selfsnake.headpos)
 	wallBuffer = 0
-	if(destination[0] < 0 + wallBuffer or destination[0] > gamestate.width - 1 - wallBuffer):
+	if(destination.x < 0 + wallBuffer or destination.x > gamestate.width - 1 - wallBuffer):
 		return False
-	if(destination[1] < 0 + wallBuffer or destination[1] > gamestate.height - 1 - wallBuffer):
+	if(destination.y < 0 + wallBuffer or destination.y > gamestate.height - 1 - wallBuffer):
 		return False
 	return True
 
