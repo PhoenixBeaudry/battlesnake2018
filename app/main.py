@@ -238,7 +238,7 @@ def dest(move, head):
 		'left': lambda x,y: [x-1,y],
 		'right': lambda x,y: [x+1,y]
 	}[move](head.x, head.y)
-	return result
+	return pointsToVector(result[0], result[1])
 
 #AVOIDWALL
 #returns false if the proposed move places us on a board wall
