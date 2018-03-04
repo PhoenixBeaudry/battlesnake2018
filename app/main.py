@@ -34,6 +34,7 @@ def move():
 
 	data = bottle.request.json
 	gamestate = Board(data)
+	FOODBUFFER = 90
 
 	#Snake Logic:
 
@@ -51,7 +52,7 @@ def move():
 	#step 2: if there is more than one valid move, apply advanced behaviour
 	#to narrow down the options
 	if(len(directions)>1):
-		dosomestuff()
+		directions = narrowOptions(gamestate, directions, FOODBUFFER)
 
 	return{
 		'move': random.choice(directions),
@@ -62,8 +63,19 @@ def move():
 
 ####higher-order behaviour
 	
-def dosomestuff():
-	return
+def narrowOptions(gamestate, directions, FOODBUFFER):
+	tempdirs = []
+	if(gamestate.selfsnake.health < FOODBUFFER):
+		tempdirs = dirToTarget(gamestate.selfsnake.headpos, closestFood(gamestate.selfsnake.headpos, gamestate.foodList), directions)
+
+	POINTBUFFERX = gamestate.width/4
+	POINTBUFFERY = gamestate.height/4
+
+	safePoints = [Vector(POINTBUFFERX, POINTBUFFERY), Vector(gamestate.width-POINTBUFFERX), Vector(POINTBUFFERX, gamestate.height-POINTBUFFERY), Vector(gamestate.width-POINTBUFFERX, gamestate.height-POINTBUFFERY)]
+
+	tempdirs = dirToTarget(gamestate.selfsnake.headpos, closestFood(gamestate.selfsnake.headpos, safePoints), directions)
+
+	return tempdirs
 
 #FOODREGION
 #takes a snake's head (typically ours) and a food particle (typically nearest)
@@ -83,7 +95,7 @@ def dangerZone(snake, esnakes, fn):
 		enemyreg=findRegion(each)
 		overlap=regionOverlap(snakereg, enemyreg)
 		if overlap:
-			count++
+			count += 1
 	return count
 
 #REGIONOVERLAP
@@ -224,10 +236,10 @@ def dest(move, head):
 #returns false if the proposed move places us on a board wall
 def avoidWall(possible_move, gamestate):
 	destination = dest(possible_move, gamestate.selfsnake.headpos)
-	wallBuffer = 0
-	if(destination[0] < 0 + wallBuffer or destination[0] > gamestate.width - wallBuffer):
+	wallBuffer = 2
+	if(destination[0] < 0 + wallBuffer or destination[0] > gamestate.width - 1 - wallBuffer):
 		return False
-	if(destination[1] < 0 + wallBuffer or destination[1] > gamestate.height - wallBuffer):
+	if(destination[1] < 0 + wallBuffer or destination[1] > gamestate.height - 1 - wallBuffer):
 		return False
 	return True
 
