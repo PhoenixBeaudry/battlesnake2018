@@ -66,10 +66,11 @@ def dosomestuff():
 	return
 
 #FOODREGION
-#takes a snake (typically ours) and a food particle (typically nearest)
+#takes a snake's head (typically ours) and a food particle (typically nearest)
 #and returns the region bordering both the food and our snake
-def foodRegion(snake, foodlocation):
-	particles=snake.getPos()
+def foodRegion(head, foodlocation):
+	particles=[]
+	particles=particles.append(snake.headPos())
 	particles=particles.append(foodlocation)
 	return findRegion(particles)
 		
@@ -91,7 +92,8 @@ def regionOverlap(a, b):
 	if b[0]>a[1] or b[1]<a[0] or b[2]>a[3] or b[3]<a[2]:
 		return False
 	return True
-	
+
+#FINDREGION
 #takes a snake and returns the smallest box-shaped region
 #that inludes it
 def findRegion(snake):
