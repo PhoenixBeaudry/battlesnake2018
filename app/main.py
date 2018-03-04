@@ -25,7 +25,7 @@ def start():
         'color': '#bab5a9',
         'taunt': '{} ({}x{})'.format(game_id, board_width, board_height),
         'head_url': head_url,
-        'name': 'battlesnake-python'
+        'name': 'OMEGASNAKE(BAD)'
     }
 
 
