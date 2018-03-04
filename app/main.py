@@ -52,7 +52,7 @@ def move():
 	#step 2: if there is more than one valid move, apply advanced behaviour
 	#to narrow down the options
 	if(len(directions)>1):
-		narrowOptions(gamestate, directions, FOODBUFFER)
+		directions = narrowOptions(gamestate, directions, FOODBUFFER)
 
 	return{
 		'move': random.choice(directions),
@@ -68,6 +68,12 @@ def narrowOptions(gamestate, directions, FOODBUFFER):
 	if(gamestate.selfsnake.health < FOODBUFFER):
 		tempdirs = dirToTarget(gamestate.selfsnake.headpos, closestFood(gamestate.selfsnake.headpos, gamestate.foodList), directions)
 
+	POINTBUFFERX = gamestate.width/4
+	POINTBUFFERY = gamestate.height/4
+
+	safePoints = [Vector(POINTBUFFERX, POINTBUFFERY), Vector(gamestate.width-POINTBUFFERX), Vector(POINTBUFFERX, gamestate.height-POINTBUFFERY), Vector(gamestate.width-POINTBUFFERX, gamestate.height-POINTBUFFERY)]
+
+	tempdirs = dirToTarget(gamestate.selfsnake.headpos, closestFood(gamestate.selfsnake.headpos, safePoints), directions)
 
 	return tempdirs
 
