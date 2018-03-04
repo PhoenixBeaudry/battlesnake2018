@@ -3,10 +3,6 @@
 class Board:
 
 
-	def __init__(self):
-		self.width = 0
-		self.height = 0
-
 
 	def __init__(self, data):
 
