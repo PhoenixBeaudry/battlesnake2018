@@ -54,6 +54,10 @@ def move():
 	if(len(directions)>1):
 		directions = narrowOptions(gamestate, directions, FOODBUFFER)
 
+
+	if(len(directions)==0):
+		directions = ['up']
+
 	return{
 		'move': random.choice(directions),
 		'taunt': "Stopped crashing at 5:12PM"
