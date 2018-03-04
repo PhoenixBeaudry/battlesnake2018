@@ -15,7 +15,7 @@ def start():
     board_width = data['width']
     board_height = data['height']
 
-    head_url = '%s://%s/static/head.png' % (
+    head_url = 'http://www.audienceseverywhere.net/wp-content/uploads/2014/05/images-3.jpg' % (
         bottle.request.urlparts.scheme,
         bottle.request.urlparts.netloc
     )
